@@ -30,7 +30,7 @@ class GenreList extends React.Component {
 
   componentDidMount() {
     axios
-    .get('http://localhost:5000/api/genre/' + this.props.match.params.id)
+    .get('https://webtoonpedia.herokuapp.com/api/genre/' + this.props.match.params.id)
     .then(res => {
       this.setState({
         platforms : res.data,

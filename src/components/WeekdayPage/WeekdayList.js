@@ -71,9 +71,9 @@ render() {
       <Grid container className='subnav-container' spacing={3} wrap="nowrap">
           {date_list.map((name, index) => {
               if(name === this.props.match.params.id){
-                  return <Grid item><a className='subnav-selected' key={index} href={`/genre/${name}`}>{name}</a></Grid>
+                  return <Grid item><a className='subnav-selected' key={index} href={`/date/${name}`}>{name}</a></Grid>
               } else {
-                  return <Grid item><a className='subnav-notselected' key={index} href={`/genre/${name}`}>{name}</a></Grid>
+                  return <Grid item><a className='subnav-notselected' key={index} href={`/date/${name}`}>{name}</a></Grid>
               }
           })}
       </Grid>

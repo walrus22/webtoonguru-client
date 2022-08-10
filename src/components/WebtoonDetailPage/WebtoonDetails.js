@@ -40,7 +40,7 @@ class WebtoonDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .post('http://localhost:5000/api/webtoon/details/' + this.props.match.params.id)
+      .post('https://webtoonpedia.herokuapp.com/api/webtoon/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState({
