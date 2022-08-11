@@ -33,7 +33,7 @@ function Home() {
     return <TableRow>
       <StyledTableCell><img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/></StyledTableCell>
       {Platforms.filter(platform => platform.name === platform_name).sort((a, b) => genre_list.indexOf(a.genre.name) - genre_list.indexOf(b.genre.name)).map((platform, index) => {
-        return <HomeCard key={index} platform={platform} webtoon={platform.webtoon._id}/>
+        return <HomeCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
       })}
       </TableRow>
   }
