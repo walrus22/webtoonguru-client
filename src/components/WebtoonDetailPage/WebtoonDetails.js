@@ -176,13 +176,13 @@ class WebtoonDetails extends React.Component {
           {/* console.log(platform) */}
           if(index===0){
             return <React.Fragment>
-                      <a href={platform.address} style={{marginRight:'5px'}}>
+                      <a href={platform._id.address} style={{marginRight:'5px'}}>
                         <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                       </a>
                     </React.Fragment>
           } else if(platform.name !== platforms[index-1].name) {
             return <React.Fragment>
-                      <a href={platform.address} style={{marginRight:'5px'}}>
+                      <a href={platform._id.address} style={{marginRight:'5px'}}>
                         <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                       </a>
                     </React.Fragment>
