@@ -40,7 +40,7 @@ class WebtoonDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .post('http://localhost:5000/api/webtoon/details/' + this.props.match.params.id)
+      .post('http://54.176.58.106:5000/api/webtoon/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -60,7 +60,7 @@ class WebtoonDetails extends React.Component {
 
   // onDeleteClick (id) {
   //   axios
-  //     .delete('http://localhost:5000/api/webtoons/'+id)
+  //     .delete('http://54.176.58.106:5000/api/webtoons/'+id)
   //     .then(res => {
   //       this.props.history.push("/");
   //     })

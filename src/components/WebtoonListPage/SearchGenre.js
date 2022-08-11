@@ -18,7 +18,7 @@ function SearchGenre(props) {
 
   // const bringGenres = () => {
   //   axios
-  //   .post('http://localhost:5000/api/genre/list')
+  //   .post('http://54.176.58.106:5000/api/genre/list')
   //   .then(res => {
   //     // console.log(res.data)
   //     setGenres(res.data)

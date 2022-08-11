@@ -16,7 +16,7 @@ function Home() {
   
   const getWebtoons = () => {
     axios
-    .post('http://localhost:5000/api/home/')
+    .post('http://54.176.58.106:5000/api/home/')
     .then(res => {
       setPlatforms(res.data)
       console.log(res.data)
