@@ -16,7 +16,7 @@ function Home() {
   
   const getWebtoons = () => {
     axios
-    .get('https://webtoonpedia.herokuapp.com/api/home/')
+    .post('http://localhost:5000/api/home/')
     .then(res => {
       setPlatforms(res.data)
       console.log(res.data)

@@ -24,7 +24,7 @@ class ArtistDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('https://webtoonpedia.herokuapp.com/api/artist/details/' + this.props.match.params.id)
+      .get('http://localhost:5000/api/artist/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data)
         this.setState({

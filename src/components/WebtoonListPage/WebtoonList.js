@@ -52,7 +52,7 @@ function WebtoonList() {
   
   const getWebtoons = (getSetting) => {
     axios
-    .post('https://webtoonpedia.herokuapp.com/api/webtoon/list', getSetting)
+    .post('http://localhost:5000/api/webtoon/list', getSetting)
     .then(res => {
       if(res.data[0].sample.length !== 0){
         setWebtoons(res.data[0].sample)

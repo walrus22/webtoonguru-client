@@ -12,7 +12,7 @@ const HomeCard = (props) => {
     const webtoon = props.webtoon;
     const platform = props.platform;
 
-    // console.log(platform)
+    console.log(props)
     
     // console.log(props)
     

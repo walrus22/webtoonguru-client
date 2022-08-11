@@ -10,7 +10,7 @@ function MainNavbar() {
   return (
     <Navbar expand="lg" >
       <Container fluid style={{maxWidth: "1200px"}}>
-        <Navbar.Brand href="/home" style={{fontWeight: '800'}}>WebtoonPedia</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontWeight: '800'}}>WebtoonPedia</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,7 +19,7 @@ function MainNavbar() {
             navbarScroll
           >
             {/* <Nav.Link href="/"></Nav.Link> */}
-            <Nav.Link style={{marginRight:'10px'}} href="/home">오늘의 웹툰</Nav.Link>
+            <Nav.Link style={{marginRight:'10px'}} href="/">오늘의 웹툰</Nav.Link>
             <Nav.Link style={{marginRight:'10px'}} href="/webtoon/list">전체보기</Nav.Link>
             <Nav.Link style={{marginRight:'10px'}}  href="/genre/romance">장르별</Nav.Link>
             <Nav.Link style={{marginRight:'10px'}}  href="/date/월">요일별</Nav.Link>

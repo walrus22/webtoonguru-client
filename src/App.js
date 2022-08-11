@@ -19,7 +19,6 @@ const App = () => {
       <div>
         <Routes>
           <Route exact path="/" element={<Home/>} />
-          <Route exact path="/home" element={<Home/>} />
           <Route path="/webtoon/list" element={<WebtoonList />} />
           <Route path="/webtoon/details/:id" element={<WebtoonDetails/>} />
           <Route path="/artist/details/:id" element={<ArtistDetails/>} />

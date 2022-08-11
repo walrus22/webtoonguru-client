@@ -40,7 +40,7 @@ class WebtoonDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .post('https://webtoonpedia.herokuapp.com/api/webtoon/details/' + this.props.match.params.id)
+      .post('http://localhost:5000/api/webtoon/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -176,6 +176,7 @@ class WebtoonDetails extends React.Component {
           {/* console.log(platform) */}
           if(index===0){
             return <React.Fragment>
+            {console.log(platform)}
                       <a href={platform._id.address} style={{marginRight:'5px'}}>
                         <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                       </a>
