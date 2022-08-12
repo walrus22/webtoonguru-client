@@ -52,7 +52,7 @@ function WebtoonList() {
   
   const getWebtoons = (getSetting) => {
     axios
-    .post('http://13.209.26.234:5000/api/webtoon/list', getSetting)
+    .post(process.env.REACT_APP_API + 'webtoon/list', getSetting)
     .then(res => {
       if(res.data[0].sample.length !== 0){
         setWebtoons(res.data[0].sample)

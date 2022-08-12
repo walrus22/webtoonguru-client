@@ -18,7 +18,7 @@ function SearchGenre(props) {
 
   // const bringGenres = () => {
   //   axios
-  //   .post('http://13.209.26.234:5000/api/genre/list')
+  //   .post(process.env.REACT_APP_API + 'genre/list')
   //   .then(res => {
   //     // console.log(res.data)
   //     setGenres(res.data)

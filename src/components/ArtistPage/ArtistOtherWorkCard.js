@@ -5,18 +5,17 @@ import Card from 'react-bootstrap/Card';
 import { Grid, Typography } from '@mui/material';
 
 
+
 const ArtistOtherWorkCard = (props) => {
     const webtoon = props.webtoon;
     console.log(webtoon)
 
     return (
-      <Grid container spacing={2} xs={6} mb={5}>
+      <Grid container item spacing={2} xs={6} mb={5}>
         <Grid item >
-          <a href={`/webtoon/details/${webtoon._id}`}>
+          <a style={{position:'relative'}} href={`/webtoon/details/${webtoon._id}`}>
             <img className='artist-card-img' src={webtoon.thumbnail}/>
-            {/* <Card.ImgOverlay style={{width:'100%', height:'100px', padding: '0px'}} >
-              {webtoon.adult === true && <img className="ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
-            </Card.ImgOverlay> */}
+            {webtoon.adult === true && <img className="artist-ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
           </a>
         </Grid>
         <Grid item >
@@ -24,8 +23,12 @@ const ArtistOtherWorkCard = (props) => {
             <a className='artist-card-title' href={`/webtoon/details/${webtoon._id}`}>{webtoon.title}</a>
           </Typography>
           <Typography mb={0.5}>
-            {webtoon.artist.map((artist) => {
-              return <a >{artist.name}</a>
+            {webtoon.artist.map((artist, index, artists) => {
+              if(index === artists.length-1){
+                return <a href={`/artist/details/${artist._id}`}>{artist.name}</a>
+              } else {
+                return <a href={`/artist/details/${artist._id}`}>{artist.name}<span>,&nbsp;</span></a>
+              }
             })}
           </Typography>
           <Typography mb={0.5}>
@@ -33,30 +36,30 @@ const ArtistOtherWorkCard = (props) => {
               if(index === genres.length-1){
                 return <Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}</Link>
               } else {
-                return <React.Fragment><Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}</Link><span>,&nbsp;</span></React.Fragment>
+                return <Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}<span>,&nbsp;</span></Link>
               }})}
-            {webtoon.adult ? <span>성인</span> : <span></span>}
+            {webtoon.date.map((date, index, dates) => {
+              console.log(date);
+            if(index === dates.length-1){
+              return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}><span className='separator'/>{date.name}</Link>
+            } else {
+              return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.name}<span>/&nbsp;</span></Link>
+            }}
+            )}
           </Typography>
           <Typography mb={0.5}>
-              {webtoon.date.map((date, index, dates) => {
-              if(index === dates.length-1){
-                return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.date}</Link>
-              } else {
-                return <React.Fragment><Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.date}</Link><span>/&nbsp;</span></React.Fragment>
-              }}
-              )}
           </Typography>
           <Typography>
             {webtoon.platform.map((platform, index, platforms)=> {
               if(index===0){
                 return <React.Fragment>
-                          <a href={platform.address} style={{marginRight:'5px'}}>
+                          <a href={platform._id.address} style={{marginRight:'5px'}}>
                             <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                           </a>
                         </React.Fragment>
               } else if(platform.name !== platforms[index-1].name) {
                 return <React.Fragment>
-                          <a href={platform.address} style={{marginRight:'5px'}}>
+                          <a href={platform._id.address} style={{marginRight:'5px'}}>
                             <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                           </a>
                         </React.Fragment>

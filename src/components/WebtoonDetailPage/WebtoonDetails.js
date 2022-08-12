@@ -40,7 +40,7 @@ class WebtoonDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .post('http://13.209.26.234:5000/api/webtoon/details/' + this.props.match.params.id)
+      .post(process.env.REACT_APP_API + 'webtoon/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -60,7 +60,7 @@ class WebtoonDetails extends React.Component {
 
   // onDeleteClick (id) {
   //   axios
-  //     .delete('http://13.209.26.234:5000/api/webtoons/'+id)
+  //     .delete(process.env.REACT_APP_API + 'webtoons/'+id)
   //     .then(res => {
   //       this.props.history.push("/");
   //     })
@@ -114,7 +114,6 @@ class WebtoonDetails extends React.Component {
         return <React.Fragment>완결</React.Fragment>
       } else {
         return <React.Fragment>
-          매주&nbsp;
           {dates.map((date, index, dates) => {
             if(index === dates.length-1){
               return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.name}</Link>

@@ -21,10 +21,16 @@ div.main {
 .navbar {
   background-color:rgba(255, 38, 38, 0.89);
   font-weight: 500;
+  /* color: white !important; */
   font-family: 'Noto Sans KR', sans-serif !important;
   /* flex: 1;
   display: flex;
   justify-content: space-between; */
+}
+
+.main-navbar-navlink{
+  color: white;
+  margin-right: 10px;
 }
 
 a {
@@ -234,6 +240,7 @@ span.separator{
         artist detail page  
 -------------------------- */
 .artist-card-img{
+  display: block;
   box-shadow: 0 0 5px gray;
   width: 300px; 
   height: 200px;
@@ -241,6 +248,18 @@ span.separator{
   object-position: 50% 50%;
   border-radius: 0px;
 }
+
+.artist-ico-adult{
+  position: absolute;
+  top: 24px;
+  left: 260px;
+  width: 33px;
+  /* height: 50px; */
+  font-size: 11px;
+  text-decoration: none;
+  color:white;
+}
+
 
 .artist-detail-name{
   font-size: 40px;
@@ -258,6 +277,7 @@ span.separator{
   font-size: 17px;
   color: black;
 }
+
 
 
 /* --------------------------

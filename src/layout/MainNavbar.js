@@ -10,7 +10,7 @@ function MainNavbar() {
   return (
     <Navbar expand="lg" >
       <Container fluid style={{maxWidth: "1200px"}}>
-        <Navbar.Brand href="/" style={{fontWeight: '800'}}>WebtoonPedia</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontWeight: '800', color:'white'}}>WebtoonPedia</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -18,12 +18,11 @@ function MainNavbar() {
             style={{maxHeight: '100px'}}
             navbarScroll
           >
-            {/* <Nav.Link href="/"></Nav.Link> */}
-            <Nav.Link style={{marginRight:'10px'}} href="/">오늘의 웹툰</Nav.Link>
-            <Nav.Link style={{marginRight:'10px'}} href="/webtoon/list">전체보기</Nav.Link>
-            <Nav.Link style={{marginRight:'10px'}}  href="/genre/romance">장르별</Nav.Link>
-            <Nav.Link style={{marginRight:'10px'}}  href="/date/월">요일별</Nav.Link>
-            <Nav.Link style={{marginRight:'10px'}}  href="/platform">플랫폼별</Nav.Link>
+            <Nav.Link className='main-navbar-navlink' href="/">오늘의 웹툰</Nav.Link>
+            <Nav.Link className='main-navbar-navlink' href="/webtoon/list">전체보기</Nav.Link>
+            <Nav.Link className='main-navbar-navlink' href="/genre/romance">장르별</Nav.Link>
+            <Nav.Link className='main-navbar-navlink' href="/date/월">요일별</Nav.Link>
+            <Nav.Link className='main-navbar-navlink' href="/platform">플랫폼별</Nav.Link>
             {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">

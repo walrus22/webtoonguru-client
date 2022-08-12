@@ -30,7 +30,7 @@ class GenreList extends React.Component {
 
   componentDidMount() {
     axios
-    .get('http://13.209.26.234:5000/api/genre/' + this.props.match.params.id)
+    .get(process.env.REACT_APP_API + 'genre/' + this.props.match.params.id)
     .then(res => {
       this.setState({
         platforms : res.data,

@@ -36,7 +36,7 @@ class WebtoonList extends Component {
 
   // componentDidMount() {
   //   axios
-  //     .get('http://13.209.26.234:5000/api/webtoon/list')
+  //     .get(process.env.REACT_APP_API + 'webtoon/list')
   //     .then(res => {
   //       this.setState({
   //         webtoons: res.data
@@ -64,7 +64,7 @@ class WebtoonList extends Component {
 
     const getWebtoons = (getSetting) => {
       axios
-      .get('http://13.209.26.234:5000/api/webtoon/list', getSetting)
+      .get(process.env.REACT_APP_API + 'webtoon/list', getSetting)
       .then(res => {
         this.setState({
           webtoons: res.data

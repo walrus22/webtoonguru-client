@@ -12,6 +12,7 @@ export function withRouter(Children){
  }
 }
 
+
 class ArtistDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -20,16 +21,18 @@ class ArtistDetails extends React.Component {
       work_list: [],
     };
   }
-
+  
+  
+  
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://13.209.26.234:5000/api/artist/details/' + this.props.match.params.id)
+      .get(process.env.REACT_APP_API + 'artist/details/' + this.props.match.params.id)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         this.setState({
-          artist: res.data[0],
-          work_list : res.data[0].work_list,
+          artist: res.data,
+          work_list : res.data.work_list,
         })
       })
       .catch(err => {
@@ -55,7 +58,7 @@ class ArtistDetails extends React.Component {
 
         <Grid container columns={12}>
           {work_list.map((webtoon) => {
-            return <ArtistOtherWorkCard webtoon={webtoon} />
+            return <ArtistOtherWorkCard webtoon={webtoon._id} />
           })}
         </Grid>
 
