@@ -24,7 +24,7 @@ class ArtistDetails extends React.Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://54.176.58.106:5000/api/artist/details/' + this.props.match.params.id)
+      .get('http://13.209.26.234:5000/api/artist/details/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data)
         this.setState({
