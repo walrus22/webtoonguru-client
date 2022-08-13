@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { Link, useParams  } from 'react-router-dom';
+import { useParams  } from 'react-router-dom';
 import '../../App.css';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import WeekdayCard from './WeekdayCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
-import WeekdaySubNavbar from './WeekdaySubNavbar';
+// import WeekdaySubNavbar from './WeekdaySubNavbar';
 
 
 export function withRouter(Children){

@@ -1,12 +1,11 @@
 
 import React from 'react';
-import { Link, useParams  } from 'react-router-dom';
+import { useParams  } from 'react-router-dom';
 import '../../App.css';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import GenreCard from './GenreCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
-import GenreSubNavbar from './GenreSubNavbar';
 import genreEngToKor from '../genreEngToKor';
 
 

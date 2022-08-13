@@ -1,15 +1,15 @@
 import React from 'react';
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Link, useParams  } from 'react-router-dom';
 import '../../App.css';
 import axios from 'axios';
 import { Grid, Paper, Typography, ButtonBase, styled, Box} from '@mui/material';
 import WebtoonOtherWorkCard from './WebtoonOtherWorkCard';
-import Buttonbar from '../../layout/Buttonbar'
-import Card from 'react-bootstrap/Card';
 import WebtoonRankChart from './WebtoonRankChart'
-import Stack from '@mui/material/Stack';
 import genreEngToKor from '../genreEngToKor';
+// import Stack from '@mui/material/Stack';
+// import Buttonbar from '../../layout/Buttonbar'
+// import Card from 'react-bootstrap/Card';
+// import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 
@@ -172,7 +172,6 @@ class WebtoonDetails extends React.Component {
     const getPublisher = () => {
       return <React.Fragment>
         {platforms.map((platform, index)=> {
-          {/* console.log(platform) */}
           if(index===0){
             return <React.Fragment>
             {console.log(platform)}
@@ -186,6 +185,8 @@ class WebtoonDetails extends React.Component {
                         <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                       </a>
                     </React.Fragment>
+          } else {
+            return <React.Fragment/>
           }
       })} </React.Fragment>
     }

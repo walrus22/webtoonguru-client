@@ -1,6 +1,6 @@
 // import axios from 'axios';
-import React, { useState, useEffect} from 'react'
-import { Button, ButtonGroup, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import React, { useState } from 'react'
+import { Button, ButtonGroup } from '@mui/material';
 import '../../App.css';
 
 // 기본(이름순), 랭크순 (각 플랫폼 기준), 업데이트순(날짜? or 크롤링),

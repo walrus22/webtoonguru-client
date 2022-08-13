@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
-import Card from 'react-bootstrap/Card';
 import { Grid, Typography } from '@mui/material';
 
 
@@ -15,7 +14,7 @@ const ArtistOtherWorkCard = (props) => {
         <Grid item >
           <a style={{position:'relative'}} href={`/webtoon/details/${webtoon._id}`}>
             <img className='artist-card-img' src={webtoon.thumbnail}/>
-            {webtoon.adult === true && <img className="artist-ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
+            {webtoon.adult === true && <img className="artist-ico-adult" src={require('../../logo/adult.png')} alt="" />}
           </a>
         </Grid>
         <Grid item >
@@ -63,7 +62,10 @@ const ArtistOtherWorkCard = (props) => {
                             <img alt="logo" className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
                           </a>
                         </React.Fragment>
+              } else {
+                return <React.Fragment/>
               }
+
             })} 
           </Typography>
         </Grid>

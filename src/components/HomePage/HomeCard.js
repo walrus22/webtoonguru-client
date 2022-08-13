@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import Card from 'react-bootstrap/Card';
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
+import {TableCell} from '@mui/material';
 import { styled } from '@mui/system';
 import genreEngToKor from '../genreEngToKor';
 

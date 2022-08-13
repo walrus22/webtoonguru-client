@@ -1,5 +1,4 @@
-import React, { useState, useEffect} from 'react'
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react'
 import '../../App.css';
 
 function SearchTitle(props) {

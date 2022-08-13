@@ -18,7 +18,6 @@ import Box from '@mui/material/Box';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/system';
 
 function WebtoonList() {
   // const [WebtoonCards, setWebtoonCards] = useState([])
@@ -48,7 +47,6 @@ function WebtoonList() {
     console.log(getSetting)
     getWebtoons(getSetting)
   }, [Page])
-
   
   const getWebtoons = (getSetting) => {
     axios

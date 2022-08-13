@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useParams  } from 'react-router-dom';
 import '../../App.css';
 import axios from 'axios';
 import ArtistOtherWorkCard from './ArtistOtherWorkCard';
 import { Grid } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 export function withRouter(Children){
   return(props)=>{
