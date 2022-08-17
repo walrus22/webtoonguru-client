@@ -103,7 +103,6 @@ class WebtoonDetails extends React.Component {
   replaceImage = (error) => {
     error.target.src = this.state.defaultImage;
   }
-
   
   render() {
     const webtoon = this.state.webtoon;

@@ -87,13 +87,12 @@ function WebtoonList() {
     showFilteredResults(newFilters)
     setFilters(newFilters)
 
-    if (window.history.pushState) {
-      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?genre=${Filters.genre.join(',')}`;
-      window.history.pushState({path:newurl},'',newurl);
-    }
+    // if (window.history.pushState) {
+    //   var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?genre=${Filters.genre.join(',')}`;
+    //   window.history.pushState({path:newurl},'',newurl);
+    // }
 
-    console.log(window.history)
-
+    // console.log(window.history)
 
   }
 
@@ -101,14 +100,12 @@ function WebtoonList() {
     setPage(p)
   }
   
-  const queryURL = (filter) => {
-    if(filetr[0] === 'all'){
-      return
-    } else {
-
-    }
-
-  }
+  // const queryURL = (filter) => {
+  //   if(filter[0] === 'all'){
+  //     return
+  //   } else {
+  //   }
+  // }
 
 
   // const TableCell = styled(TableCell)({
