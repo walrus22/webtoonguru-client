@@ -11,8 +11,6 @@ import GenreList from './components/GenrePage/GenreList';
 import WeekdayList from './components/WeekdayPage/WeekdayList';
 import Footer from './layout/Footer';
  
-console.log(process.env.REACT_APP_API);
-
 const App = () => {
  return (
    <div className="App" >

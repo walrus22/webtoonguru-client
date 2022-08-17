@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import WebtoonListCard from './WebtoonListCard';
 import SearchTitle from './SearchTitle';
 import SearchArtist from './SearchArtist';
@@ -44,7 +44,7 @@ function WebtoonList() {
         filters: Filters,
         limit: Limit,
     }
-    console.log(getSetting)
+    // console.log(getSetting)
     getWebtoons(getSetting)
   }, [Page])
   
@@ -55,13 +55,13 @@ function WebtoonList() {
       if(res.data[0].sample.length !== 0){
         setWebtoons(res.data[0].sample)
         setCount(res.data[0].count[0].count)
-        console.log(res)
+        // console.log(res)
       } else {
         setWebtoons([])
         setCount(0)
-        console.log(res)
+        // console.log(res)
       }
-      console.log(getSetting)
+      // console.log(getSetting)
     })
     .catch(err =>{
         console.log('Error from ShowWebtoonList');
@@ -82,16 +82,35 @@ function WebtoonList() {
     let newFilters = {...Filters}
     newFilters[category] = filters
 
-    console.log(newFilters)
+    // console.log(newFilters)
 
     showFilteredResults(newFilters)
     setFilters(newFilters)
+
+    if (window.history.pushState) {
+      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?genre=${Filters.genre.join(',')}`;
+      window.history.pushState({path:newurl},'',newurl);
+    }
+
+    console.log(window.history)
+
+
   }
 
   const handlePage = (event, p) => {
     setPage(p)
   }
   
+  const queryURL = (filter) => {
+    if(filetr[0] === 'all'){
+      return
+    } else {
+
+    }
+
+  }
+
+
   // const TableCell = styled(TableCell)({
   //   padding: '10px',
   //   borderBottom: '0px',

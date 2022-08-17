@@ -19,7 +19,7 @@ function Home() {
     .post(process.env.REACT_APP_API + 'home/')
     .then(res => {
       setPlatforms(res.data)
-      console.log(res.data)
+      // console.log(res.data)
     })
     .catch(err =>{
         console.log('Error from ShowWebtoonList');
@@ -45,7 +45,6 @@ function Home() {
 
   return (
     <div className='main'>
-      {console.log(process.env.REACT_APP_HELLO)}
       <Typography style={{marginTop: '25px'}} variant='h4'>오늘의 플랫폼별 1위 웹툰</Typography>
       <Typography style={{marginTop: '15px', borderBottom:'1px solid rgba(0,0,0,0.3)'}} variant='subtitle1'>업데이트 시간 {Platforms[0]?.update_time.slice(5,10)} {Platforms[0]?.update_time.slice(11,16)}</Typography>
 

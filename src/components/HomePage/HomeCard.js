@@ -12,10 +12,7 @@ const HomeCard = (props) => {
     const webtoon = props.webtoon;
     const platform = props.platform;
 
-    console.log(props)
-    
     // console.log(props)
-    
     const StyledTableCell = styled(TableCell)({
         padding: 8,
         borderBottom: 0,
