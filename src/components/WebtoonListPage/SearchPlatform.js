@@ -6,13 +6,12 @@ import '../../App.css';
 // const platform_list = ["bomtoon", "ktoon", "mrblue", "toomics"];
 
 function SearchPlatform(props) {
-  const [Checked, setChecked] = useState(() => ["all"]) ;// default = all
-  const [Platforms, setPlatforms] = useState();
+  const [Checked, setChecked] = useState(props.platform) ;// default = all
+  const [Platforms, setPlatforms] = useState(["bomtoon", "ktoon", "mrblue", "toomics", "naver"]);
 
   useEffect(() => {
-    setPlatforms(["bomtoon", "ktoon", "mrblue", "toomics", "naver"])
-  }, [])
-
+    setChecked(props.platform)
+  }, [props.platform])
 
   const handleToggle = (event, newCheckedEvent) => {
     let value;
@@ -44,8 +43,7 @@ function SearchPlatform(props) {
         }
       }
     }
-    setChecked(newChecked) 
-    props.handleFilters(newChecked, "Platforms")
+    props.handleFilters(newChecked)
   }
 
   return (

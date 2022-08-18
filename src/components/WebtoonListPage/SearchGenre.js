@@ -1,19 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../App.css';
 import genreEngToKor from '../genreEngToKor';
 
-
-
 function SearchGenre(props) {
-  const [Checked, setChecked] = useState(() => ["all"]) ;// default = all
-  const [Genres, setGenres] = useState(["romance", "bl", "gl", "drama", "daily", "action", "gag", "fantasy", 
-  "thrill/horror", "historical", "sports", "sensibility", "school", "erotic"]);
-
-  // useEffect(() => {
-  //   bringGenres()
-  //   // console.log(Genres)
-  // }, [])
+  const [Checked, setChecked] = useState(props.genre) ;// default = all
+  const [Genres] = useState(["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill/horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]);
+  
+  // console.log(props.genre);
+  // console.log(Checked);
+  // if(!arrayEquals(Checked, props.genre)){
+  //   setChecked(props.genre)
+  // } 
+  
+  useEffect(() => {
+    // bringGenres()
+    setChecked(props.genre)
+  }, [props.genre])
 
   // const bringGenres = () => {
   //   axios
@@ -33,6 +36,7 @@ function SearchGenre(props) {
     // console.log("newCheckedEvent: " + newCheckedEvent)
     // newCheckedEvent 가 Checked보다 작아지는 경우 : 언클릭
     // newCheckedEvent 가 Checked보다 커지는 경우 : 클릭
+
     let value;
     if(Checked.length > newCheckedEvent.length){
       // console.log("Checked is longer")
@@ -73,8 +77,8 @@ function SearchGenre(props) {
     }
         
     // console.log("newChecked:" + newChecked)
-    setChecked(newChecked) 
-    props.handleFilters(newChecked, "genres")
+    // setChecked(newChecked) 
+    props.handleFilters(newChecked, "hello")  // 뒤 인자는 안쓰임..
   }
 
   return (
@@ -88,12 +92,12 @@ function SearchGenre(props) {
           // color="success"
           >
           <ToggleButton className="genreToggle" value="all">전체</ToggleButton>
-          {Genres?.slice(0,8).map((item) => (
+          {Genres?.map((item) => (
             <ToggleButton className="genreToggle" key={item} value={item}>{genreEngToKor(item)}</ToggleButton>
           ))}
         </ToggleButtonGroup>
       </div>
-      <div>
+      {/* <div>
         <ToggleButtonGroup
           value={Checked}
           onChange={handleToggle}
@@ -105,7 +109,7 @@ function SearchGenre(props) {
             <ToggleButton className="genreToggle" key={item} value={item}>{genreEngToKor(item)}</ToggleButton>
           ))}
         </ToggleButtonGroup>
-      </div>
+      </div> */}
   </div>
   )
 }

@@ -1,18 +1,17 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import { Switch } from '@mui/material';
 import '../../App.css';
 
-
-
 function ToggleAdult(props) {
-  const [Adults, setAdults] = useState(false);
+  const [Adults, setAdults] = useState(props.adult);
+  
+  useEffect(() => {
+    setAdults(props.adult)
+  }, [props.adult])
 
   const handleToggle = (event, newCheckedEvent) => {
     let newAdults = !Adults
-    console.log(Adults)
-    setAdults(newAdults) 
     props.handleFilters(newAdults, "adults")
-    
   }
 
   return (

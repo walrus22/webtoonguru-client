@@ -1,17 +1,29 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import '../../App.css';
 
 function SearchArtist(props) {
-  const [Artist, setArtist] = useState();
+  const [Artist, setArtist] = useState(props.artist);
+  console.log(props.artist);
+  console.log(typeof(props.artist));
+
+  useEffect(() => {
+    setArtist(props.artist)
+    props.handleFilters(Artist)
+
+    // if(!props.artist){
+    //   setArtist("")
+    // } else {
+    //   setArtist(props.artist)
+    // }
+  }, [props.artist])
 
   const handleArtist = (value) => {
-    setArtist(value)
     props.handleFilters(value)
   }
 
   return (
     <div> 
-        <input style={{width: '220px'}} id="ArtistSearch" type="text" placeholder='여러 작가 검색시 ,를 사용하세요' onChange={event => handleArtist(event.target.value)}/>
+        <input style={{width: '220px'}} id="artist-search" type="text" placeholder='여러 작가 검색시 ,를 사용하세요' onChange={event => setArtist(event.target.value)}/>
         <label htmlFor="ArtistSearch"></label>
     </div>
   )

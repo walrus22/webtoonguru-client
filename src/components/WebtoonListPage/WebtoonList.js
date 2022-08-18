@@ -1,8 +1,8 @@
 // import React, { Component } from 'react';
 import React, { useEffect, useState } from 'react';
+import { useHistory, Link, useSearchParams } from 'react-router-dom';
 import '../../App.css';
 import axios from 'axios';
-import { useHistory, Link } from 'react-router-dom';
 import WebtoonListCard from './WebtoonListCard';
 import SearchTitle from './SearchTitle';
 import SearchArtist from './SearchArtist';
@@ -11,13 +11,11 @@ import SearchDate from './SearchDate';
 import SearchOrder from './SearchOrder';
 import SearchPlatform from './SearchPlatform';
 import ToggleAdult from './ToggleAdult';
+import ResetButton from './ResetButton';
 // import ToggleBL from './ToggleBL';
-import { Grid, Typography} from '@mui/material';
-import Box from '@mui/material/Box';
 
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import { Button, Paper, Box, Stack, Pagination, Grid, Typography} from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from '@mui/material';
 
 function WebtoonList() {
   // const [WebtoonCards, setWebtoonCards] = useState([])
@@ -25,17 +23,20 @@ function WebtoonList() {
   const [Webtoons, setWebtoons] = useState([])
   const [Count, setCount] = useState(0)
   const [Page, setPage] = useState(1)
+  const [PageUrl, setPageUrl] = useState(process.env.REACT_APP_API + "webtoon/list")
+  const [searchParams, setSearchParams] = useSearchParams();
   const [Filters, setFilters] = useState({
-    title: "",
-    artist: "",
-    date: ['all'],
-    genre: ['all'],
-    genreOperator: "",
-    platform: ['all'],
-    adult: false,
+    title: !searchParams.get("title") ? "" : searchParams.get("title"),
+    artist: !searchParams.get("artist") ? "" : searchParams.get("artist"),
+    date: !searchParams.get("date") ? ['all'] : searchParams.get("date").split(','),
+    genre: !searchParams.get("genre") ? ['all'] : searchParams.get("genre").split(','),
+    platform: !searchParams.get("platform") ? ['all'] : searchParams.get("platform").split(','),
+    adult: !searchParams.get("adult") ? false : (searchParams.get("adult")==="true"), 
     order: { 'title' : 1,
     // 'platform.rank' : 0, 
-  },
+    // 최신순
+    },
+    genreOperator: "",
   })
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function WebtoonList() {
   
   const getWebtoons = (getSetting) => {
     axios
-    .post(process.env.REACT_APP_API + 'webtoon/list', getSetting)
+    .post(PageUrl, getSetting)
     .then(res => {
       if(res.data[0].sample.length !== 0){
         setWebtoons(res.data[0].sample)
@@ -78,21 +79,24 @@ function WebtoonList() {
     setPage(1)
   }
 
-  const handleFilters  = (filters, category) => {
-    let newFilters = {...Filters}
-    newFilters[category] = filters
+  const handleFilters  = async (filters, category) => {
+    console.log(category)
+    console.log(typeof(category))
+    let newFilters = {}
+    if(category) {
+      // console.log("yes");
+      newFilters = {...Filters}
+      newFilters[category] = filters
+    } else {
+      // console.log("no");
+      newFilters = filters
+    }
 
     // console.log(newFilters)
 
     showFilteredResults(newFilters)
+    queryURL(newFilters)
     setFilters(newFilters)
-
-    // if (window.history.pushState) {
-    //   var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?genre=${Filters.genre.join(',')}`;
-    //   window.history.pushState({path:newurl},'',newurl);
-    // }
-
-    // console.log(window.history)
 
   }
 
@@ -100,12 +104,47 @@ function WebtoonList() {
     setPage(p)
   }
   
-  // const queryURL = (filter) => {
-  //   if(filter[0] === 'all'){
-  //     return
-  //   } else {
-  //   }
-  // }
+  const queryURL = async (filters) => {
+    // console.log(filters)
+    // let newUrl = process.env.REACT_APP_API + "webtoon/list";
+    // let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    let newUrl = "http://localhost:3000/webtoon/list";
+    for await (const [filterName, filter] of Object.entries(filters)){
+      if(typeof(filter) === "string" && filter !== "") {
+        newUrl += `&${filterName}=${filter}`;
+      } else if(Array.isArray(filter) === true && filter[0] !== 'all') {
+        newUrl += `&${filterName}=${filter.join(',')}`;
+      } else if(typeof(filter) === "boolean") {
+        newUrl += `&${filterName}=${filter}`;
+      }
+    }
+    // if no "?" in url, change first "&" to "?"
+    if(newUrl.indexOf("&") !== -1){
+      newUrl = newUrl.substring(0, newUrl.indexOf("&")) + "?" + newUrl.substring(newUrl.indexOf("&")+1)
+    }
+    console.log(newUrl);
+    window.history.pushState({path:newUrl},'',newUrl);
+    // setPageUrl(newUrl)
+    // console.log(PageUrl);
+  }
+
+  const handleReset = () => {
+    const resetFilter = {
+      title: "",
+      artist: "",
+      date: ['all'],
+      genre: ['all'],
+      genreOperator: "",
+      platform: ['all'],
+      adult: false,
+      order: { 'title' : 1,
+      // 'platform.rank' : 0, 
+      },
+      genreOperator: "",
+    };
+    handleFilters(resetFilter)
+
+  }
 
 
   // const TableCell = styled(TableCell)({
@@ -132,37 +171,45 @@ function WebtoonList() {
               </TableHead> */}
               <TableBody>
                 <TableRow >
-                  <TableCell className="list-table-cell">제목</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchTitle handleFilters={filters => handleFilters(filters, "title")}/></TableCell>
+                  <TableCell className="list-table-cell">제목</TableCell> 
+                  <TableCell className="list-table-cell" colSpan={4}>
+                    <input style={{width: '220px'}} id="title-search" type="text" placeholder='제목을 입력해주세요' onChange={event => handleFilters(event.target.value, "title")} value={Filters.title}/>
+                    <label htmlFor="title-search"></label>
+                  </TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">작가</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchArtist handleFilters={filters => handleFilters(filters, "artist")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={4}>
+                    <input style={{width: '220px'}} id="artist-search" type="text" placeholder='여러 작가 검색시 ,를 사용하세요' onChange={event => handleFilters(event.target.value, "artist")} value={Filters.artist}/>
+                    <label htmlFor="artist-search"></label>
+                  </TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">연재요일</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchDate handleFilters={filters => handleFilters(filters, "date")}/></TableCell>
+                  {/* 뒤 함수가 이 paraent의 function인거고 앞의 handleFilters는 props로 전달하는 이름뿐인거, 앞의 filters = newChecked, 뒤에껀 그걸 인자로 받은거  */}
+                  <TableCell className="list-table-cell" colSpan={4}><SearchDate date={Filters.date} handleFilters={filters => handleFilters(filters, "date")}/></TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">플랫폼</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchPlatform handleFilters={filters => handleFilters(filters, "platform")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={4}><SearchPlatform platform={Filters.platform} handleFilters={filters => handleFilters(filters, "platform")}/></TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">성인물</TableCell>
-                  <TableCell className="list-table-cell"><ToggleAdult handleFilters={filters => handleFilters(filters, "adult")}/>
+                  <TableCell className="list-table-cell"><ToggleAdult adult={Filters.adult} handleFilters={filters => handleFilters(filters, "adult")}/>
                   </TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">정렬 방식</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchOrder handleFilters={filters => handleFilters(filters, "order")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={4}><SearchOrder order={Filters.order} handleFilters={filters => handleFilters(filters, "order")}/></TableCell>
                 </TableRow>
                 <TableRow >
                   <TableCell className="list-table-cell">장르</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchGenre handleFilters={filters => handleFilters(filters, "genre")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={4}><SearchGenre genre={Filters.genre} handleFilters={filters => handleFilters(filters, "genre")}/></TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
+          <Button onClick={handleReset}> reset </Button>
         </Grid>
         <Grid item xs={12}>
           {/* mt: 5, padding: 5 */}
@@ -198,3 +245,15 @@ function WebtoonList() {
 }
 
 export default WebtoonList;
+
+// title: "",
+// artist: "",
+// date: ['all'],
+// genre: ['all'],
+// genreOperator: "",
+// platform: ['all'],
+// adult: false,
+// order: { 'title' : 1,
+// // 'platform.rank' : 0, 
+// },
+// genreOperator: "",
