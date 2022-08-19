@@ -47,7 +47,7 @@ function SearchGenre(props) {
     }
     
     const currentIndex = Checked.indexOf(value);
-    const newChecked = [...Checked];
+    let newChecked = [...Checked];
 
     // console.log("Filter value:" + value)
     // console.log("typeof value:" + typeof(value))

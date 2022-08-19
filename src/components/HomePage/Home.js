@@ -77,6 +77,7 @@ function Home() {
             </TableBody>
           </Table>
         </TableContainer>
+        {/* <Typography className='update-time' variant='subtitle1'>업데이트 시간 {this.state.platforms[0]?.update_time.slice(5,10)} {this.state.platforms[0]?.update_time.slice(11,16)}</Typography> */}
       </Grid>
     </div>
 

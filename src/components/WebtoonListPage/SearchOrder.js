@@ -25,7 +25,6 @@ function SearchOrder(props) {
     } else {
         newOrders[value]= 1
     }
-
     setOrders(newOrders)
     props.handleFilters(newOrders, "Orders")
   }

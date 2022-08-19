@@ -11,7 +11,8 @@ import SearchDate from './SearchDate';
 import SearchOrder from './SearchOrder';
 import SearchPlatform from './SearchPlatform';
 import ToggleAdult from './ToggleAdult';
-import ResetButton from './ResetButton';
+import ToggleOperator from './ToggleOperator';
+
 // import ToggleBL from './ToggleBL';
 
 import { Button, Paper, Box, Stack, Pagination, Grid, Typography} from '@mui/material';
@@ -31,12 +32,14 @@ function WebtoonList() {
     date: !searchParams.get("date") ? ['all'] : searchParams.get("date").split(','),
     genre: !searchParams.get("genre") ? ['all'] : searchParams.get("genre").split(','),
     platform: !searchParams.get("platform") ? ['all'] : searchParams.get("platform").split(','),
-    adult: !searchParams.get("adult") ? false : (searchParams.get("adult")==="true"), 
+    adult: !searchParams.get("adult") ? false : (searchParams.get("adult") === "all" ? "all" : (searchParams.get("adult") === "true")), // string 타입이라 boolean으로 바꿔줘야함 
     order: { 'title' : 1,
     // 'platform.rank' : 0, 
     // 최신순
     },
-    genreOperator: "",
+    dateOperator: !searchParams.get("dateOperator") ? ['or'] : [searchParams.get("dateOperator")],
+    genreOperator: !searchParams.get("genreOperator") ? ['or'] : [searchParams.get("genreOperator")],
+    platformOperator: !searchParams.get("platformOperator") ? ['or'] : [searchParams.get("platformOperator")],
   })
 
   useEffect(() => {
@@ -80,8 +83,6 @@ function WebtoonList() {
   }
 
   const handleFilters  = async (filters, category) => {
-    console.log(category)
-    console.log(typeof(category))
     let newFilters = {}
     if(category) {
       // console.log("yes");
@@ -122,7 +123,6 @@ function WebtoonList() {
     if(newUrl.indexOf("&") !== -1){
       newUrl = newUrl.substring(0, newUrl.indexOf("&")) + "?" + newUrl.substring(newUrl.indexOf("&")+1)
     }
-    console.log(newUrl);
     window.history.pushState({path:newUrl},'',newUrl);
     // setPageUrl(newUrl)
     // console.log(PageUrl);
@@ -134,16 +134,16 @@ function WebtoonList() {
       artist: "",
       date: ['all'],
       genre: ['all'],
-      genreOperator: "",
       platform: ['all'],
-      adult: false,
+      adult: false, 
       order: { 'title' : 1,
       // 'platform.rank' : 0, 
       },
-      genreOperator: "",
+      dateOperator: ["or"],
+      genreOperator: ["or"],
+      platformOperator: ["or"],
     };
     handleFilters(resetFilter)
-
   }
 
 
@@ -185,15 +185,6 @@ function WebtoonList() {
                   </TableCell>
                 </TableRow>
                 <TableRow >
-                  <TableCell className="list-table-cell">연재요일</TableCell>
-                  {/* 뒤 함수가 이 paraent의 function인거고 앞의 handleFilters는 props로 전달하는 이름뿐인거, 앞의 filters = newChecked, 뒤에껀 그걸 인자로 받은거  */}
-                  <TableCell className="list-table-cell" colSpan={4}><SearchDate date={Filters.date} handleFilters={filters => handleFilters(filters, "date")}/></TableCell>
-                </TableRow>
-                <TableRow >
-                  <TableCell className="list-table-cell">플랫폼</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchPlatform platform={Filters.platform} handleFilters={filters => handleFilters(filters, "platform")}/></TableCell>
-                </TableRow>
-                <TableRow >
                   <TableCell className="list-table-cell">성인물</TableCell>
                   <TableCell className="list-table-cell"><ToggleAdult adult={Filters.adult} handleFilters={filters => handleFilters(filters, "adult")}/>
                   </TableCell>
@@ -203,13 +194,22 @@ function WebtoonList() {
                   <TableCell className="list-table-cell" colSpan={4}><SearchOrder order={Filters.order} handleFilters={filters => handleFilters(filters, "order")}/></TableCell>
                 </TableRow>
                 <TableRow >
-                  <TableCell className="list-table-cell">장르</TableCell>
-                  <TableCell className="list-table-cell" colSpan={4}><SearchGenre genre={Filters.genre} handleFilters={filters => handleFilters(filters, "genre")}/></TableCell>
+                  <TableCell className="list-table-cell">연재요일 <ToggleOperator operator={Filters.dateOperator} handleFilters={filters => handleFilters(filters, "dateOperator")}/></TableCell>
+                  {/* 뒤 함수가 이 paraent의 function인거고 앞의 handleFilters는 props로 전달하는 이름뿐인거, 앞의 filters = newChecked, 뒤에껀 그걸 인자로 받은거  */}
+                  <TableCell className="list-table-cell" colSpan={4}><SearchDate date={Filters.date} handleFilters={filters => handleFilters(filters, "date")}/></TableCell>
+                </TableRow>
+                <TableRow >
+                  <TableCell className="list-table-cell">플랫폼 <ToggleOperator operator={Filters.platformOperator} handleFilters={filters => handleFilters(filters, "platformOperator")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={4}><SearchPlatform platform={Filters.platform} handleFilters={filters => handleFilters(filters, "platform")}/></TableCell>
+                </TableRow>
+                <TableRow >
+                  <TableCell className="list-table-cell">장르 <ToggleOperator operator={Filters.genreOperator} handleFilters={filters => handleFilters(filters, "genreOperator")}/></TableCell>
+                  <TableCell className="list-table-cell" colSpan={3}><SearchGenre genre={Filters.genre} handleFilters={filters => handleFilters(filters, "genre")}/></TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
-          <Button onClick={handleReset}> reset </Button>
+          <Button onClick={handleReset}> filter reset </Button>
         </Grid>
         <Grid item xs={12}>
           {/* mt: 5, padding: 5 */}

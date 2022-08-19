@@ -115,14 +115,14 @@ class WebtoonDetails extends React.Component {
 
     const publishDate = () => {
       if(webtoon.finish_status === "완결"){
-        return <React.Fragment>완결</React.Fragment>
+        return <React.Fragment><Link className="date-link" to={`/webtoon/list?date=완결`}>완결</Link></React.Fragment>
       } else {
         return <React.Fragment>
           {dates.map((date, index, dates) => {
             if(index === dates.length-1){
-              return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.name}</Link>
+              return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}>{date.name}</Link>
             } else {
-              return <React.Fragment><Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.name}</Link><span>,&nbsp;</span></React.Fragment>
+              return <React.Fragment><Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}>{date.name}</Link><span>,&nbsp;</span></React.Fragment>
             }}
           )} 연재
         </React.Fragment>
@@ -143,9 +143,9 @@ class WebtoonDetails extends React.Component {
       return <React.Fragment>
             {genres.map((genre, index, genres) =>{
               if(index === genres.length-1){
-                return <Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genreEngToKor(genre.name)}</Link>
+                return <Link className="genre-link" key={genre._id} to={`/webtoon/list?genre=${genre.name}`}>{genreEngToKor(genre.name)}</Link>
               } else {
-                return <React.Fragment><Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}</Link><span>,&nbsp;</span></React.Fragment>
+                return <React.Fragment><Link className="genre-link" key={genre._id} to={`/webtoon/list?genre=${genre.name}`}>{genre.name}</Link><span>,&nbsp;</span></React.Fragment>
               }})}
             {webtoon.adult ? <span><span className='separator'></span>성인</span> : <span></span>}
       </React.Fragment>

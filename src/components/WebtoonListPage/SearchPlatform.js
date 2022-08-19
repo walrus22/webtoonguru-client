@@ -7,7 +7,7 @@ import '../../App.css';
 
 function SearchPlatform(props) {
   const [Checked, setChecked] = useState(props.platform) ;// default = all
-  const [Platforms, setPlatforms] = useState(["bomtoon", "ktoon", "mrblue", "toomics", "naver"]);
+  const [Platforms, setPlatforms] = useState(["bomtoon", "ktoon", "mrblue", "toomics", "naver", "lezhin", "onestory"]);
 
   useEffect(() => {
     setChecked(props.platform)
@@ -60,7 +60,6 @@ function SearchPlatform(props) {
           {Platforms?.map((item) => (
             <ToggleButton className="platformToggle" key={item} value={item}>
               <img alt="logo" style={{height:"20px", width:"20px", marginRight: "5px"}} className="publisher-logo" src={require(`../../logo/${item}.png`)}/>
-              {/* {console.log(item)} */}
               {item}
             </ToggleButton>
           ))}
