@@ -111,7 +111,7 @@ function WebtoonList() {
     // let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
     
     let newUrl =window.location.protocol + "//" + window.location.host + window.location.pathname;
-    console.log(newUrl);
+    // console.log(newUrl);
     for await (const [filterName, filter] of Object.entries(filters)){
       if(typeof(filter) === "string" && filter !== "") {
         newUrl += `&${filterName}=${filter}`;
