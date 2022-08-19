@@ -107,9 +107,8 @@ function WebtoonList() {
   
   const queryURL = async (filters) => {
     // console.log(filters)
-    // let newUrl = process.env.REACT_APP_API + "webtoon/list";
-    // let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    let newUrl = "http://localhost:3000/webtoon/list";
+    // console.log(process.env.REACT_APP_CLIENT + "webtoon/list");
+    let newUrl = process.env.REACT_APP_CLIENT + "webtoon/list";
     for await (const [filterName, filter] of Object.entries(filters)){
       if(typeof(filter) === "string" && filter !== "") {
         newUrl += `&${filterName}=${filter}`;
@@ -125,7 +124,6 @@ function WebtoonList() {
     }
     window.history.pushState({path:newUrl},'',newUrl);
     // setPageUrl(newUrl)
-    // console.log(PageUrl);
   }
 
   const handleReset = () => {
