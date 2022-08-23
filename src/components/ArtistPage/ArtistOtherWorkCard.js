@@ -33,16 +33,16 @@ const ArtistOtherWorkCard = (props) => {
           <Typography mb={0.5}>
             {webtoon.genre.map((genre, index, genres) =>{
               if(index === genres.length-1){
-                return <Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}</Link>
+                return <Link className="genre-link" key={genre._id} to={`/webtoon/list?genre=${genre.name}`}>{genre.name}</Link>
               } else {
-                return <Link className="genre-link" key={genre._id} to={`/genre/all/${genre._id}` }>{genre.name}<span>,&nbsp;</span></Link>
+                return <Link className="genre-link" key={genre._id} to={`/webtoon/list?genre=${genre.name}`}>{genre.name}<span>,&nbsp;</span></Link>
               }})}
             {webtoon.date.map((date, index, dates) => {
               console.log(date);
             if(index === dates.length-1){
-              return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}><span className='separator'/>{date.name}</Link>
+              return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}><span className='separator'/>{date.name}</Link>
             } else {
-              return <Link className="date-link" key={date._id} to={`/date/all/${date._id}`}>{date.name}<span>/&nbsp;</span></Link>
+              return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}>{date.name}<span>/&nbsp;</span></Link>
             }}
             )}
           </Typography>
