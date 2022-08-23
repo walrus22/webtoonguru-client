@@ -39,12 +39,11 @@ const ArtistOtherWorkCard = (props) => {
               }})}
             {webtoon.date.map((date, index, dates) => {
               console.log(date);
-            if(index === dates.length-1){
-              return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}><span className='separator'/>{date.name}</Link>
-            } else {
-              return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}>{date.name}<span>/&nbsp;</span></Link>
-            }}
-            )}
+              if(index === 0){
+                return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}><span className='separator'/>{date.name}</Link>
+              } else {
+                return <Link className="date-link" key={date._id} to={`/webtoon/list?date=${date.name}`}>{date.name}<span>/&nbsp;</span></Link>
+            }})}
           </Typography>
           <Typography mb={0.5}>
           </Typography>
