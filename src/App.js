@@ -20,12 +20,12 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home/>} />
           <Route path="/webtoon/list" element={<WebtoonList />} />
-          <Route path="/webtoon/details/:id" element={<WebtoonDetails/>} />
-          <Route path="/artist/details/:id" element={<ArtistDetails/>} />
+          <Route path="/webtoon/details/:id" element={<WebtoonDetails/>}/>
+          <Route path="/artist/details/:id" element={<ArtistDetails/>}/>
           {/* <Route path="/genre/all/:id" element={<GenreList/>} /> */}
-          <Route exact path="/genre" element={ <Navigate to="/genre/romance" /> }/>
-          <Route path="/genre/:id" element={<GenreList/>} />
-          <Route path="/date/:id" element={<WeekdayList/>} />
+          <Route exact path="/genre" element={<Navigate to="/genre/romance"/>}/>
+          <Route path="/genre/:id" element={<GenreList/>}/>
+          <Route path="/date/:id" element={<WeekdayList/>}/>
           {/* <Route
               path="*"
               element={

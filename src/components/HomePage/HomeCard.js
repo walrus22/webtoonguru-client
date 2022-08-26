@@ -12,9 +12,9 @@ const HomeCard = (props) => {
     const webtoon = props.webtoon;
     const platform = props.platform;
     const FORMAT = 'webp'
-    const WIDTH = 320
-    const HEIGHT = 320
-    const APIGATEWAT = 'https://sex.com'
+    const WIDTH = 80
+    const HEIGHT = 80
+    const APIGATEWAT = 'https://thumbnail.webtoon.guru/'
 
     // console.log(props)
     const StyledTableCell = styled(TableCell)({
@@ -22,16 +22,20 @@ const HomeCard = (props) => {
         borderBottom: 0,
     })
 
-    const originalImageToWebImage = (imageUrl) => {
-        // return `${APIGATEWAT}/${hex(imageUrl)}?format=${FORMAT}&width=${WIDTH}&heght=${HEIGHT}`
+    
+    const originalImageToWebImage = (KEY) => {
+        return `${APIGATEWAT}?key=${KEY}&format=${FORMAT}&width=${WIDTH}&height=${HEIGHT}`
     }
+
+    // console.log(document.referrer);
 
     return (
         <StyledTableCell>
             <Card className='home-card'>
                 <Link to={`/webtoon/details/${webtoon._id}`}>
-                    <Card.Img className='home-card-img' variant="top" src={webtoon.thumbnail} />
-                    {/* <Card.Img className='home-card-img' variant="top" src={originalImageToWebImage(webtoon.thumbnail)} /> */}
+                    {console.log("console: " + originalImageToWebImage(webtoon._id))}
+                    <Card.Img className='home-card-img' variant="top" src={originalImageToWebImage(webtoon._id)} />
+                    {/* <Card.Img className='home-card-img' variant="top" src={webtoon.thumbnail} /> */}
                 
                 <Card.ImgOverlay>
                     {webtoon.adult === true && <img className="home-ico-adult" src={require('../../logo/adult.png')} alt="hi" />}

@@ -12,6 +12,7 @@ function Home() {
 
   useEffect(() => {
     getWebtoons()
+    // getTest()
   }, [])
   
   const getWebtoons = () => {
@@ -25,6 +26,17 @@ function Home() {
         console.log('Error from ShowWebtoonList');
     })
   }
+
+  // const getTest = () => {
+  //   axios
+  //   .get("https://thumbnail.webtoon.guru/?key=")
+  //   .then(res => {
+  //     console.log(res);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // }
 
   const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill/horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
   const platform_list = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue',  'onestory'] //'toomics'

@@ -10,7 +10,9 @@ function MainNavbar() {
   return (
     <Navbar expand="lg" >
       <Container fluid style={{maxWidth: "1200px"}}>
-        <Navbar.Brand href="/" style={{fontWeight: '800', color:'white'}}>WebtoonPedia</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontWeight: '800', color:'white'}}>
+          <img src={require("../logo/webtoonguru-nav.png")} alt="WebtoonGuru-logo" width={130}></img>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
