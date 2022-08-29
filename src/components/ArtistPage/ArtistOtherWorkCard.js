@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import { Grid, Typography } from '@mui/material';
-
+import originalImageToWebImage from '../originalImageToWebImage';
 
 
 const ArtistOtherWorkCard = (props) => {
@@ -13,7 +13,7 @@ const ArtistOtherWorkCard = (props) => {
       <Grid container item spacing={2} xs={6} mb={5}>
         <Grid item >
           <a style={{position:'relative'}} href={`/webtoon/details/${webtoon._id}`}>
-            <img className='artist-card-img' src={webtoon.thumbnail}/>
+            <img className='artist-card-img' src={originalImageToWebImage(webtoon, 300, 200)}/>
             {webtoon.adult === true && <img className="artist-ico-adult" src={require('../../logo/adult.png')} alt="" />}
           </a>
         </Grid>

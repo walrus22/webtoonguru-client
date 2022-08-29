@@ -5,16 +5,11 @@ import Card from 'react-bootstrap/Card';
 import {TableCell} from '@mui/material';
 import { styled } from '@mui/system';
 import genreEngToKor from '../genreEngToKor';
-
-
+import originalImageToWebImage from '../originalImageToWebImage';
 
 const HomeCard = (props) => {
     const webtoon = props.webtoon;
     const platform = props.platform;
-    const FORMAT = 'webp'
-    const WIDTH = 80
-    const HEIGHT = 80
-    const APIGATEWAT = 'https://thumbnail.webtoon.guru/'
 
     // console.log(props)
     const StyledTableCell = styled(TableCell)({
@@ -23,18 +18,12 @@ const HomeCard = (props) => {
     })
 
     
-    const originalImageToWebImage = (KEY) => {
-        return `${APIGATEWAT}?key=${KEY}&format=${FORMAT}&width=${WIDTH}&height=${HEIGHT}`
-    }
-
-    // console.log(document.referrer);
-
     return (
         <StyledTableCell>
             <Card className='home-card'>
                 <Link to={`/webtoon/details/${webtoon._id}`}>
-                    {console.log("console: " + originalImageToWebImage(webtoon._id))}
-                    <Card.Img className='home-card-img' variant="top" src={originalImageToWebImage(webtoon._id)} />
+                    {/* {console.log("console: " + originalImageToWebImage(webtoon._id))} */}
+                    <Card.Img className='home-card-img' variant="top" src={originalImageToWebImage(webtoon, 80, 80)} />
                     {/* <Card.Img className='home-card-img' variant="top" src={webtoon.thumbnail} /> */}
                 
                 <Card.ImgOverlay>

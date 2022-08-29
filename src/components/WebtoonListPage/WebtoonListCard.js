@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import Card from 'react-bootstrap/Card';
+import originalImageToWebImage from '../originalImageToWebImage';
 
 
 const WebtoonListCard = (props) => {
@@ -12,7 +13,7 @@ const WebtoonListCard = (props) => {
         <Card>
           <div>
             <Link to={`/webtoon/details/${webtoon._id}`}>
-              <Card.Img className='list-card-img' variant="top" src={webtoon.thumbnail} />
+              <Card.Img className='list-card-img' variant="top" src={originalImageToWebImage(webtoon, 165, 100)} />
               <Card.ImgOverlay style={{width:'100%', height:'100px', padding: '0px'}}>
                 {webtoon.adult === true && <img className="list-ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
               </Card.ImgOverlay>

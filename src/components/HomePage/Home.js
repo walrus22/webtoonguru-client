@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     getWebtoons()
-    // getTest()
+    // getReferer()
   }, [])
   
   const getWebtoons = () => {
@@ -26,6 +26,17 @@ function Home() {
         console.log('Error from ShowWebtoonList');
     })
   }
+
+  // const getReferer = () => {
+  //   axios
+  //   .post('https://thumbnail.webtoon.guru/?key=6308737feee3e6209904f4e3')
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  //   .catch(err =>{
+  //     console.log(err);
+  //   })
+  // }
 
   // const getTest = () => {
   //   axios

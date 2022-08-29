@@ -31,8 +31,8 @@ class WebtoonRankChart extends Component {
 	render() {
 		const webtoon = this.props.webtoon;
 		const platforms = this.props.platforms;
-		console.log(webtoon)
-		console.log(platforms)
+		// console.log(webtoon)
+		// console.log(platforms)
 
 		const options = {
 			theme: "light2",

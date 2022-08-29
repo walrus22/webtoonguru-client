@@ -57,6 +57,7 @@ class ArtistDetails extends React.Component {
         </div>
 
         <Grid container columns={12}>
+          {console.log(artist)}
           {work_list.map((webtoon) => {
             return <ArtistOtherWorkCard webtoon={webtoon._id} />
           })}

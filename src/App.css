@@ -313,7 +313,8 @@ span.separator{
 }
 
 .list-card-img{
-  width:100%;
+  /* width:100%; */
+  width: 165px;
   height: 100px;
   /* background-position: center center;
   background-repeat: no-repeat; */
