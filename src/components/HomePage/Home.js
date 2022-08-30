@@ -49,7 +49,7 @@ function Home() {
   //   })
   // }
 
-  const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill/horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
+  const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
   const platform_list = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue',  'onestory'] //'toomics'
 
   const rank_list = (platform_name) => {

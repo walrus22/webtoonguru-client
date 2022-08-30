@@ -11,7 +11,7 @@
 // function GenreSubNavbar(props) {
 //     const genreSelected = props.genreSelected;
 //     console.log(genreSelected)
-//     const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill/horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
+//     const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
 
 //     return (
 //         <div>

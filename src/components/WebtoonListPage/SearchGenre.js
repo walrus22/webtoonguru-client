@@ -5,7 +5,7 @@ import genreEngToKor from '../genreEngToKor';
 
 function SearchGenre(props) {
   const [Checked, setChecked] = useState(props.genre) ;// default = all
-  const [Genres] = useState(["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill/horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]);
+  const [Genres] = useState(["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]);
   
   // console.log(props.genre);
   // console.log(Checked);
