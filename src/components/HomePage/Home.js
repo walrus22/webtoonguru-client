@@ -19,6 +19,8 @@ function Home() {
     axios
     .post(process.env.REACT_APP_API + 'home/')
     .then(res => {
+      // debugger;
+      console.log("getWebtoons");
       setPlatforms(res.data)
       // console.log(res.data)
     })
@@ -49,6 +51,11 @@ function Home() {
   //   })
   // }
 
+  const d = new Date();
+  const day = ["일","월","화","수","목","금","토"][d.getDay()];
+  
+  // console.log(day);
+
   const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
   const platform_list = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue',  'onestory'] //'toomics'
 
@@ -68,8 +75,7 @@ function Home() {
 
   return (
     <div className='main'>
-      <Typography style={{marginTop: '25px'}} variant='h4'>오늘의 플랫폼별 1위 웹툰</Typography>
-      <Typography style={{marginTop: '15px', borderBottom:'1px solid rgba(0,0,0,0.3)'}} variant='subtitle1'>업데이트 시간 {Platforms[0]?.update_time.slice(5,10)} {Platforms[0]?.update_time.slice(11,16)}</Typography>
+      <Typography style={{marginTop: '25px'}} variant='h4'>{d.getMonth()+1}.{d.getDate()} {day}요일 플랫폼별 인기 웹툰</Typography>
 
       <Grid container mt={3}>
         <TableContainer>
@@ -100,8 +106,9 @@ function Home() {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <Typography className='update-time' variant='subtitle1'>업데이트 시간 {this.state.platforms[0]?.update_time.slice(5,10)} {this.state.platforms[0]?.update_time.slice(11,16)}</Typography> */}
+        <Typography className='update-time' variant='subtitle1'>업데이트 시간 {Platforms[0]?.update_time.slice(5,10)} {Platforms[0]?.update_time.slice(11,16)} </Typography>
       </Grid>
+      {/* <Typography> info 버튼 만들기 >> 해당 데이터는 각 플랫폼의 장르별 1위 작품을 기준으로 산정하였습니다</Typography> */}
     </div>
 
   )

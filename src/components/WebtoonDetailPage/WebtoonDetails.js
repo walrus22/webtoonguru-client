@@ -36,6 +36,7 @@ class WebtoonDetails extends React.Component {
       orders: {},
       // dominantColor: [],
       defaultImage: require('../../img/af.png'),
+      thumbnail: ''
     };
   }
 
@@ -45,13 +46,16 @@ class WebtoonDetails extends React.Component {
       .post(process.env.REACT_APP_API + 'webtoon/details/' + this.props.match.params.id)
       .then(res => {
         // console.log(res.data);
+        // debugger
         this.setState({
           webtoon: res.data,
           genres : res.data.genre,
           dates : res.data.date,
           platforms : res.data.platform,
           artists: res.data.artist,
+          thumbnail: originalImageToWebImage(res.data, 500, 300)
         })
+
         // this.getDominantColor(res.data)
         this.getOtherWorkList(res.data)
       })
@@ -104,6 +108,17 @@ class WebtoonDetails extends React.Component {
   replaceImage = (error) => {
     error.target.src = this.state.defaultImage;
   }
+
+  // getThumbnail2 = (webtoon) => {
+  //   this.setState({
+  //     thumbnail:''
+  //   })
+
+  //   if(webtoon.thumbnail) {
+  //     // console.log(webtoon);
+  //     return originalImageToWebImage(webtoon, 500, 300)
+  //   }
+  // }
   
   render() {
     const webtoon = this.state.webtoon;
@@ -114,7 +129,7 @@ class WebtoonDetails extends React.Component {
     const dates = this.state.dates;
     // const dominantColor = this.state.dominantColor?.join();
 
-    console.log(this.state.webtoon);
+    // console.log(this.state.webtoon);
 
     const publishDate = () => {
       if(webtoon.finish_status === "완결"){
@@ -198,14 +213,13 @@ class WebtoonDetails extends React.Component {
       })} </React.Fragment>
     }
 
-    const getThumbnail = () => {
-      if(webtoon.thumbnail) {
-        console.log(webtoon);
-        return <ButtonBase sx={{boxShadow: 0, width: 500, height: 300}}>
-          <Img className='detail-img' alt="detail img" src={originalImageToWebImage(webtoon, 500, 300)}/>
-        </ButtonBase>
-      }
-    }
+    // const getThumbnail = () => {
+    //   if(webtoon.thumbnail) {
+    //     return <ButtonBase sx={{boxShadow: 0, width: 500, height: 300}}>
+    //       <Img className='detail-img' alt="" src={originalImageToWebImage(webtoon, 500, 300)}/>
+    //     </ButtonBase>
+    //   }
+    // }
 
     const Img = styled('img')({
       margin: 'auto',
@@ -242,10 +256,10 @@ class WebtoonDetails extends React.Component {
       >
         <Grid container spacing={2}>
           <Grid item md={5.5}>
-              {getThumbnail()}
-            {/* <ButtonBase sx={{boxShadow: 0, width: 500, height: 300}}>
-              <Img className='detail-img' alt="detail-img" src={webtoon.thumbnail} onError={this.replaceImage}/>
-            </ButtonBase> */}
+              {/* {getThumbnail()} */}
+            <ButtonBase sx={{boxShadow: 0, width: 500, height: 300}}>
+              <Img className='detail-img' alt="detail-img" src={this.state.thumbnail} onError={this.replaceImage}/>
+            </ButtonBase>
           </Grid>
           <Grid item container xs={12} ml={1.5} md={5} spacing={2} sx={{backgroundColor: 'white', mt: 2}}>
             <Grid item mr={3}>

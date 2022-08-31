@@ -1,13 +1,12 @@
 
 import React from 'react';
-import { useParams  } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import '../../App.css';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import GenreCard from './GenreCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
 import genreEngToKor from '../genreEngToKor';
-
 
 
 export function withRouter(Children){
@@ -20,6 +19,13 @@ export function withRouter(Children){
 class GenreList extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.match.params.id);
+    // console.log(this.props.match.params.id.match(/romance/i));
+
+    // if(this.props.match.params.id === "aa"){
+    //   <Navigate to="/romance" />
+    // }
+    
     this.state = {
       platforms: [],
       genre_name: "",
@@ -76,6 +82,9 @@ render() {
     borderBottom: 0,
   })
 
+  if(genre_list.indexOf(this.props.match.params.id) === -1){
+    return <Navigate to='/genre/romance'></Navigate>
+  } else {
   return (
     <div className="main">
       {/* <GenreSubNavbar genreSelected={this.props.match.params.id}/> */}
@@ -125,9 +134,11 @@ render() {
         <Typography className='update-time' variant='subtitle1'>업데이트 시간 {this.state.platforms[0]?.update_time.slice(5,10)} {this.state.platforms[0]?.update_time.slice(11,16)}</Typography>
 
       </Grid>
-
     </div>
-  );
+    );
+  }
+
+
 }
 }
 

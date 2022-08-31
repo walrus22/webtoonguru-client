@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useParams  } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import '../../App.css';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import WeekdayCard from './WeekdayCard';
@@ -59,63 +59,65 @@ render() {
   const platforms = this.state.platforms
   const platform_list = this.state.platform_list;
   const date_name = this.props.match.params.id;
-  const date_list = ["월","화","수","목","금","토","일", "열흘", "비정기", "연재","완결"]
+  const date_list = ["월","화","수","목","금","토","일", "열흘", "비정기", "완결"]
 
   const StyledTableCell = styled(TableCell)({
     padding: 8,
     borderBottom: 0,
   })
 
-  return(
-    <div className="main">
-      <Grid container className='subnav-container' spacing={3} wrap="nowrap">
-          {date_list.map((name, index) => {
-              if(name === this.props.match.params.id){
-                  return <Grid item><a className='subnav-selected' key={index} href={`/date/${name}`}>{name}</a></Grid>
-              } else {
-                  return <Grid item><a className='subnav-notselected' key={index} href={`/date/${name}`}>{name}</a></Grid>
-              }
-          })}
-      </Grid>
-
-      <Grid container mt={3}>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell></StyledTableCell>
-                <StyledTableCell align="center">1위</StyledTableCell>
-                <StyledTableCell align="center">2위</StyledTableCell>
-                <StyledTableCell align="center">3위</StyledTableCell>
-                <StyledTableCell align="center">4위</StyledTableCell>
-                <StyledTableCell align="center">5위</StyledTableCell>
-                <StyledTableCell align="center">6위</StyledTableCell>
-                <StyledTableCell align="center">7위</StyledTableCell>
-                <StyledTableCell align="center">8위</StyledTableCell>
-                <StyledTableCell align="center">9위</StyledTableCell>
-                <StyledTableCell align="center">10위</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-                {platform_list?.map((platform_name, index) => {
-                  return <TableRow key={index}>
-                          <StyledTableCell>
-                            <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
-                          </StyledTableCell>
-                          {platforms.filter(platform => platform.name === platform_name).map((platform, index, platforms) => {
-                            return <WeekdayCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
-                          })}
+  if(date_list.indexOf(this.props.match.params.id) === -1){
+    return <Navigate to='/date/월'/>
+  } else {
+    return(
+      <div className="main">
+        <Grid container className='subnav-container' spacing={3} wrap="nowrap">
+            {date_list.map((name, index) => {
+                if(name === this.props.match.params.id){
+                    return <Grid item><a className='subnav-selected' key={index} href={`/date/${name}`}>{name}</a></Grid>
+                } else {
+                    return <Grid item><a className='subnav-notselected' key={index} href={`/date/${name}`}>{name}</a></Grid>
+                }
+            })}
+        </Grid>
+  
+        <Grid container mt={3}>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell></StyledTableCell>
+                  <StyledTableCell align="center">1위</StyledTableCell>
+                  <StyledTableCell align="center">2위</StyledTableCell>
+                  <StyledTableCell align="center">3위</StyledTableCell>
+                  <StyledTableCell align="center">4위</StyledTableCell>
+                  <StyledTableCell align="center">5위</StyledTableCell>
+                  <StyledTableCell align="center">6위</StyledTableCell>
+                  <StyledTableCell align="center">7위</StyledTableCell>
+                  <StyledTableCell align="center">8위</StyledTableCell>
+                  <StyledTableCell align="center">9위</StyledTableCell>
+                  <StyledTableCell align="center">10위</StyledTableCell>
                 </TableRow>
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Typography className='update-time' variant='subtitle1'>업데이트 시간 {platforms[0]?.update_time.slice(5,10)} {platforms[0]?.update_time.slice(11,16)}</Typography>
-      </Grid>
-
-
-    </div>
-  )
+              </TableHead>
+              <TableBody>
+                  {platform_list?.map((platform_name, index) => {
+                    return <TableRow key={index}>
+                            <StyledTableCell>
+                              <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
+                            </StyledTableCell>
+                            {platforms.filter(platform => platform.name === platform_name).map((platform, index, platforms) => {
+                              return <WeekdayCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
+                            })}
+                  </TableRow>
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Typography className='update-time' variant='subtitle1'>업데이트 시간 {platforms[0]?.update_time.slice(5,10)} {platforms[0]?.update_time.slice(11,16)}</Typography>
+        </Grid>
+      </div>
+    )
+  }
 }
 }
 
