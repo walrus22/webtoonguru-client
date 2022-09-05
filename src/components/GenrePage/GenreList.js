@@ -7,7 +7,7 @@ import GenreCard from './GenreCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
 import genreEngToKor from '../genreEngToKor';
-
+import { platformOrderList } from '../genreEngToKor';
 
 export function withRouter(Children){
   return(props)=>{
@@ -48,7 +48,7 @@ class GenreList extends React.Component {
     })
 
     const removeEmpty = (platforms) => {
-      const platform_order = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue', 'onestory']; //, 'toomics'
+      const platform_order = platformOrderList
 
       let temp = [];
       platforms.forEach((platform) => {
@@ -82,8 +82,9 @@ render() {
     borderBottom: 0,
   })
 
-  if(genre_list.indexOf(this.props.match.params.id) === -1){
-    return <Navigate to='/genre/romance'></Navigate>
+  if(genre_list.includes(this.props.match.params.id) === false){
+    console.log("hi");
+    return <Navigate to='/404'></Navigate>
   } else {
   return (
     <div className="main">

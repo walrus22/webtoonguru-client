@@ -2,12 +2,13 @@
 import React, { useState, useEffect} from 'react'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../App.css';
+import { platformOrderList } from '../genreEngToKor';
 
 // const platform_list = ["bomtoon", "ktoon", "mrblue", "toomics"];
 
 function SearchPlatform(props) {
   const [Checked, setChecked] = useState(props.platform) ;// default = all
-  const [Platforms, setPlatforms] = useState(["bomtoon", "ktoon", "mrblue", "toomics", "naver", "lezhin", "onestory"]);
+  const [Platforms, setPlatforms] = useState(platformOrderList);
 
   useEffect(() => {
     setChecked(props.platform)

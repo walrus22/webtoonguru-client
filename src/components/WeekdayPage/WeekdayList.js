@@ -7,6 +7,8 @@ import WeekdayCard from './WeekdayCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
 // import WeekdaySubNavbar from './WeekdaySubNavbar';
+import { platformOrderList } from '../genreEngToKor';
+
 
 
 export function withRouter(Children){
@@ -39,7 +41,7 @@ class WeekdayList extends React.Component {
     })
 
     const removeEmpty = (platforms) => {
-      const platform_order = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue', 'onestory']; //, 'toomics'
+      const platform_order = platformOrderList
       let temp = [];
       platforms.forEach((platform) => {
         if(temp.indexOf(platform.name) === -1) {

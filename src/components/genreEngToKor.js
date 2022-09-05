@@ -29,3 +29,4 @@ function genreEngToKor(genre) {
 }
 
 export default genreEngToKor
+export let platformOrderList = ["naver", "kakao_webtoon", "lezhin", "toomics", "ktoon", "bomtoon", "mrblue",  "onestory", ]

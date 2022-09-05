@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import HomeCard from './HomeCard';
 import { styled } from '@mui/system';
-
+import { platformOrderList } from '../genreEngToKor';
 
 function Home() {
   const [Webtoons, setWebtoons] = useState([])
@@ -57,7 +57,7 @@ function Home() {
   // console.log(day);
 
   const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
-  const platform_list = ['naver', 'lezhin', 'bomtoon', 'ktoon', 'mrblue',  'onestory'] //'toomics'
+  const platform_list = platformOrderList
 
   const rank_list = (platform_name) => {
     return <TableRow>

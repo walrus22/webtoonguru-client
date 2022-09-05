@@ -3,12 +3,31 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet } from 'react-router-dom';
-
-// import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 function MainNavbar() {
+  const [searchInput, setSearchInput] = useState("")
+
+  const handleChange = (event) => {
+    setSearchInput(event.target.value)
+    console.log(event.target.value);
+    // console.log(searchInput);
+
+    axios
+    .post("http://localhost:5000/api/search", {word: event.target.value})
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log('Error from Search');
+    })
+  }
+
+
   return (
     <Navbar expand="lg" >
       <Container fluid style={{maxWidth: "1200px"}}>
@@ -42,9 +61,11 @@ function MainNavbar() {
           <Form className="d-flex">
             <Form.Control
               type="search"
+              as="input"
               placeholder="제목 / 작가로 검색"
               className="me-2"
               aria-label="Search"
+              onChange={handleChange}
             />
   
             {/* <Button variant="outline-success">Search</Button> */}
@@ -55,4 +76,4 @@ function MainNavbar() {
   );
 }
 
-export default MainNavbar;
+export default MainNavbar 
