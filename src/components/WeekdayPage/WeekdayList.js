@@ -7,7 +7,7 @@ import WeekdayCard from './WeekdayCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
 // import WeekdaySubNavbar from './WeekdaySubNavbar';
-import { platformOrderList } from '../genreEngToKor';
+import { platformOrderList, dateOrderList } from '../genreEngToKor';
 
 
 
@@ -34,6 +34,7 @@ class WeekdayList extends React.Component {
       this.setState({
         platforms : res.data,
       })
+      console.log(res.data);
       removeEmpty(res.data)
   })
     .catch(err =>{
@@ -61,7 +62,7 @@ render() {
   const platforms = this.state.platforms
   const platform_list = this.state.platform_list;
   const date_name = this.props.match.params.id;
-  const date_list = ["월","화","수","목","금","토","일", "열흘", "비정기", "완결"]
+  const date_list = dateOrderList
 
   const StyledTableCell = styled(TableCell)({
     padding: 8,
@@ -108,7 +109,9 @@ render() {
                               <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
                             </StyledTableCell>
                             {platforms.filter(platform => platform.name === platform_name).map((platform, index, platforms) => {
-                              return <WeekdayCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
+                              if(index < 10){
+                                return <WeekdayCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
+                              }
                             })}
                   </TableRow>
                   })}

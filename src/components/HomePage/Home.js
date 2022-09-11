@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material';
 import HomeCard from './HomeCard';
 import { styled } from '@mui/system';
-import { platformOrderList } from '../genreEngToKor';
+import { platformOrderList, genreOrderList } from '../genreEngToKor';
 
 function Home() {
   const [Webtoons, setWebtoons] = useState([])
@@ -56,15 +56,23 @@ function Home() {
   
   // console.log(day);
 
-  const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
+  const genre_list = genreOrderList
   const platform_list = platformOrderList
 
   const rank_list = (platform_name) => {
     return <TableRow>
-      <StyledTableCell><img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/></StyledTableCell>
-      {Platforms.filter(platform => platform.name === platform_name).sort((a, b) => genre_list.indexOf(a.genre.name) - genre_list.indexOf(b.genre.name)).map((platform, index) => {
-        return <HomeCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
-      })}
+        <StyledTableCell>
+          <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
+        </StyledTableCell>
+        {Platforms.filter(platform => platform.name === platform_name).sort((a, b) => genre_list.indexOf(a.genre.name) - genre_list.indexOf(b.genre.name)).map((platform, index, platform_list) => {
+          {/* console.log(platform_list);
+          console.log(platform); */}
+          if(index !== 0 && platform.genre.name === platform_list[index-1].genre.name){
+            return
+          } else {
+            return <HomeCard key={index} platform={platform} webtoon={platform.webtoon[0]}/>
+          }
+        })}
       </TableRow>
   }
 
@@ -76,7 +84,6 @@ function Home() {
   return (
     <div className='main'>
       <Typography style={{marginTop: '25px'}} variant='h4'>{d.getMonth()+1}.{d.getDate()} {day}요일 플랫폼별 인기 웹툰</Typography>
-
       <Grid container mt={3}>
         <TableContainer>
           <Table>
@@ -110,7 +117,6 @@ function Home() {
       </Grid>
       {/* <Typography> info 버튼 만들기 >> 해당 데이터는 각 플랫폼의 장르별 1위 작품을 기준으로 산정하였습니다</Typography> */}
     </div>
-
   )
 }
 

@@ -4,7 +4,7 @@
 //     "스릴/공포", "무협", "스포츠", "감성", "학교", "에로"]
 
 
-const genre_list = {
+const genreListDict = {
     "romance" : "로맨스",
     "drama": "드라마",
     "daily": "일상",
@@ -21,12 +21,14 @@ const genre_list = {
     "erotic": "에로",
     }
 
-const day_list_kor = ["월","화","수","목","금","토","일","연재","완결","열흘", "비정기"]
+const dayListKor = ["월","화","수","목","금","토","일","연재","완결","열흘", "비정기"]
 
 
 function genreEngToKor(genre) {
-    return genre_list[genre]
+    return genreListDict[genre]
 }
 
 export default genreEngToKor
+export let genreOrderList = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
 export let platformOrderList = ["naver", "kakao_webtoon", "lezhin", "toomics", "ktoon", "bomtoon", "mrblue",  "onestory", ]
+export let dateOrderList = ["월","화","수","목","금","토","일", "열흘", "비정기", "완결"]

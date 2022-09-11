@@ -6,11 +6,13 @@ import { Outlet } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import MainNavbarCard from './MainNavbarCard';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 function MainNavbar() {
   const [searchInput, setSearchInput] = useState("")
+  const [webtoons, setWebtoons] = useState([])
 
   const handleChange = (event) => {
     setSearchInput(event.target.value)
@@ -21,6 +23,7 @@ function MainNavbar() {
     .post("http://localhost:5000/api/search", {word: event.target.value})
     .then(res => {
       console.log(res.data);
+      setWebtoons(res.data)
     })
     .catch(err => {
       console.log('Error from Search');
@@ -67,9 +70,11 @@ function MainNavbar() {
               aria-label="Search"
               onChange={handleChange}
             />
-  
+
+
             {/* <Button variant="outline-success">Search</Button> */}
           </Form>
+            <MainNavbarCard webtoon={webtoons[0]}/>
         </Navbar.Collapse>
       </Container>
     </Navbar>

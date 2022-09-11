@@ -7,7 +7,7 @@ import GenreCard from './GenreCard';
 import { styled } from '@mui/system';
 import axios from 'axios';
 import genreEngToKor from '../genreEngToKor';
-import { platformOrderList } from '../genreEngToKor';
+import { platformOrderList, genreOrderList } from '../genreEngToKor';
 
 export function withRouter(Children){
   return(props)=>{
@@ -76,7 +76,7 @@ render() {
   // const platform_list = this.state.platform_list;
   // console.log(platforms)
   
-  const genre_list = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
+  const genre_list = genreOrderList
   const StyledTableCell = styled(TableCell)({
     padding: 8,
     borderBottom: 0,
@@ -125,7 +125,9 @@ render() {
                           <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
                         </StyledTableCell>
                         {this.state.platforms.filter(platform => platform.name === platform_name).map((platform, index, platforms) => {
-                          return <GenreCard key={index} platform={platform} webtoon={platform.webtoon_extend[0]}/>
+                          if(index<10){
+                            return <GenreCard key={index} platform={platform} webtoon={platform.webtoon_extend[0]}/>
+                          }
                         })}
               </TableRow>
               })}

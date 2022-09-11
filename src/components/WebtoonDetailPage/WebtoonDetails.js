@@ -35,7 +35,7 @@ class WebtoonDetails extends React.Component {
       artistsHaveOthers: [],
       orders: {},
       // dominantColor: [],
-      defaultImage: require('../../img/af.png'),
+      // defaultImage: require('../../img/af.png'),
       thumbnail: ''
     };
   }
@@ -258,7 +258,8 @@ class WebtoonDetails extends React.Component {
           <Grid item md={5.5}>
               {/* {getThumbnail()} */}
             <ButtonBase sx={{boxShadow: 0, width: 500, height: 300}}>
-              <Img className='detail-img' alt="" src={this.state.thumbnail} onError={this.replaceImage}/>
+              <Img className='detail-img' alt="" src={this.state.thumbnail}/>
+              {/* <Img className='detail-img' alt="" src={this.state.thumbnail} onError={this.replaceImage}/> */}
             </ButtonBase>
           </Grid>
           <Grid item container xs={12} ml={1.5} md={5} spacing={2} sx={{backgroundColor: 'white', mt: 2}}>
