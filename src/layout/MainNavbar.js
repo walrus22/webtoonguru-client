@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import MainNavbarCard from './MainNavbarCard';
+import SearchCard from './SearchCard';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
@@ -16,18 +16,22 @@ function MainNavbar() {
 
   const handleChange = (event) => {
     setSearchInput(event.target.value)
-    console.log(event.target.value);
+    // console.log(event.target.value);
     // console.log(searchInput);
 
-    axios
-    .post("http://localhost:5000/api/search", {word: event.target.value})
-    .then(res => {
-      console.log(res.data);
-      setWebtoons(res.data)
-    })
-    .catch(err => {
-      console.log('Error from Search');
-    })
+    if(event.target.value === ""){
+      setWebtoons([])
+    } else {
+      axios
+      .post("http://localhost:5000/api/search", {word: event.target.value})
+      .then(res => {
+        console.log(res.data);
+        setWebtoons(res.data)
+      })
+      .catch(err => {
+        console.log('Error from Search');
+      })
+    }
   }
 
 
@@ -60,8 +64,7 @@ function MainNavbar() {
               </NavDropdown.Item>
             </NavDropdown> */}
 
-          </Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               as="input"
@@ -70,11 +73,21 @@ function MainNavbar() {
               aria-label="Search"
               onChange={handleChange}
             />
+            </Form> */}
+            <div className='search-bar-dropdown'>
+              <input
+                type='text'
+                class='form-control'
+                placeholder="제목 / 작가로 검색"
+                onChange={handleChange}
+              />
+              {webtoons?.map((webtoon, index) => {
+                return <SearchCard webtoon={webtoon}/>
+              })}
+            </div>
 
 
-            {/* <Button variant="outline-success">Search</Button> */}
-          </Form>
-            <MainNavbarCard webtoon={webtoons[0]}/>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

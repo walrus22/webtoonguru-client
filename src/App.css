@@ -480,3 +480,77 @@ span.separator{
 }
 
 
+/* --------------------------
+        nav search
+-------------------------- */
+/* .css-1ex1afd-MuiTableCell-root{
+  border-bottom: 0px !important;
+  padding: 10px !important;
+  align-content: center;
+  justify-content: center;
+} */
+
+.search-card-img{
+  /* width:100%; */
+  width: 165px;
+  height: 100px;
+  /* background-position: center center;
+  background-repeat: no-repeat; */
+  /* box-shadow: 0 0 10px #ccc; */
+  object-fit: cover; 
+  /* object-position: 50% 50%; */
+  border: solid  rgba(0, 0, 0, 0.15) 0.1px;
+  box-shadow: 10px;
+  border-radius: 0px;
+}
+
+.search-ico-adult{
+  width: 20px;
+  margin: 1px 0px 0px 140px;
+}
+
+.search-card-title-body {
+  /* background-color: white; */
+  height: 25px;
+  margin-top: 3px;
+  
+  align-content: flex-end;
+  padding: 0px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.search-card-title {
+  /* background-color: white; */
+  /* height: 25px; */
+  /* width: 50px; */
+  /* display: inline-flex; */
+  font-size: 15px;
+  color: black;
+  text-decoration: None;
+  /* align-content: center; */
+  /* margin-top: 3px; */
+}
+
+
+.search-card-artist-body{
+  /* background-color: white; */
+  
+  height: 20px;
+  margin-top: -2px;
+  padding: 0px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.search-card-artist{
+  /* background-color: white; */
+  height: 20px;
+  font-size: 13px;
+  color: rgb(56, 56, 56);
+  text-decoration: None;
+  margin-top: 0px;
+  padding: 0px;
+}

@@ -4,7 +4,7 @@ function originalImageToWebImage(webtoon, width, height, format='webp') {
     // console.log(webtoon);
 
     if(webtoon.thumbnail.indexOf("mrblue") !== -1){
-        return `${APIGATEWAT}?key=${webtoon._id}&width=${width}&height=${height}&format=${format}&trim=true`
+        return `${APIGATEWAT}?key=${webtoon._id}-trim&width=${width}&height=${height}&format=${format}`
     } else {
         return `${APIGATEWAT}?key=${webtoon._id}&width=${width}&height=${height}&format=${format}`
     }

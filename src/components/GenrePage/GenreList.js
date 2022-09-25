@@ -41,6 +41,7 @@ class GenreList extends React.Component {
         platforms : res.data,
         genre_name : this.props.match.params.id,
       })
+      console.log(res.data);
       removeEmpty(res.data)
     })
     .catch(err =>{
@@ -60,7 +61,7 @@ class GenreList extends React.Component {
       temp.sort((a, b) => platform_order.indexOf(a) - platform_order.indexOf(b))
 
       // 투믹스 중복 1위 제거하기 전까진 일단 냅둬
-      temp.splice(temp.indexOf("toomics"),1) 
+      // temp.splice(temp.indexOf("toomics"),1) 
       // 
 
       this.setState({
@@ -120,6 +121,7 @@ render() {
             </TableHead>
             <TableBody>
               {this.state.platform_list?.map((platform_name, index) => {
+                console.log(this.state.platform_list);
                 return <TableRow key={index}>
                         <StyledTableCell>
                           <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>

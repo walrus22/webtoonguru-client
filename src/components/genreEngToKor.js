@@ -30,5 +30,5 @@ function genreEngToKor(genre) {
 
 export default genreEngToKor
 export let genreOrderList = ["romance", "drama", "daily", "sensibility", "gag", "fantasy", "thrill+horror", "action", "historical", "school", "sports",  "bl", "gl", "erotic"]
-export let platformOrderList = ["naver", "kakao_webtoon", "lezhin", "toomics", "ktoon", "bomtoon", "mrblue",  "onestory", ]
+export let platformOrderList = ["toptoon", "naver", "kakao_webtoon", "lezhin", "toomics", "ktoon", "bomtoon", "mrblue",  "onestory", ]
 export let dateOrderList = ["월","화","수","목","금","토","일", "열흘", "비정기", "완결"]
