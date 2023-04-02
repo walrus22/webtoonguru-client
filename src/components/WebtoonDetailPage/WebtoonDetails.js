@@ -12,14 +12,11 @@ import originalImageToWebImage from '../originalImageToWebImage';
 // import Buttonbar from '../../layout/Buttonbar'
 // import Card from 'react-bootstrap/Card';
 // import { Helmet, HelmetProvider } from "react-helmet-async";
-
-
-
 export function withRouter(Children){
   return(props)=>{
-     const match  = {params: useParams()};
-     return <Children {...props}  match = {match}/>
- }
+    const match  = {params: useParams()};
+    return <Children {...props}  match = {match}/>
+  }
 }
 
 class WebtoonDetails extends React.Component {
@@ -289,9 +286,6 @@ class WebtoonDetails extends React.Component {
           </Grid>
         </Grid>
       </Paper>
-
-
-
       <Paper
         sx={{
           pt: 3,
@@ -322,67 +316,3 @@ class WebtoonDetails extends React.Component {
 // 뒤로가기 or 목차 or 돌아가기 기능 추가
 
 export default withRouter(WebtoonDetails);
-
-
-
-  // getPublisher = (platforms) => {
-  //   platforms.map((platform, index)=> {
-  //     if(index===0){
-  //       return <React.Fragment>
-  //                 <a href={platform.address}>
-  //                   <img className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
-  //                 </a>
-  //               </React.Fragment>
-  //     } else if(platform.name !== platforms[index-1].name) {
-
-  //     }
-  //   })
-
-        
-  // return <React.Fragment>
-  //   {platforms.map((platform, index)=> {
-  //     if(index===0){
-  //       return <React.Fragment>
-  //                 <a href={platform.address}>
-  //                   <img className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
-  //                 </a>
-  //                   <span>&nbsp;&nbsp;{platform.genre.name} {platform.rank}위 </span>
-  //               </React.Fragment>
-  //     } else if(platform.name !== platforms[index-1].name) {
-  //       return <React.Fragment>
-  //                 <br />
-  //                 <a href={platform.address}>
-  //                   <img className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
-  //                 </a>
-  //                   <span>&nbsp;&nbsp;{platform.genre.name} {platform.rank}위 </span>
-  //               </React.Fragment>
-  //     } else {
-  //       return <span>&nbsp;{platform.genre.name} {platform.rank}위 </span>
-  //     }
-  // })} </React.Fragment>
-
-
-    // return <React.Fragment>      
-    // {platforms.map((platform, index) => {
-    //       return <a href={platform.address} key={platform._id}>{platform.genre.name} {platform.rank}위</a>
-    // })}
-    
-    
-    
-    // {platforms.map((platform, index, platforms) => {
-
-    //   console.log("platforms" + platforms[0])
-    //   console.log("platform.name" + platform.name)
-    //   {/* console.log("platforms[index-1].name"  + platforms[index+1].name) */}
-      
-    //     if(index===0 || platform.name !== platforms[index-1].name){
-    //       return <React.Fragment>
-    //       <a href={platform.address}>
-    //         <img className="publisher-logo" src={require(`../../logo/${platform.name}.png`)}></img>
-    //         </a>
-    //     </React.Fragment>
-    //     }
-    // })}
-    // </React.Fragment>
-
-  // }

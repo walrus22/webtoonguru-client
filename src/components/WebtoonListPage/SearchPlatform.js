@@ -4,8 +4,6 @@ import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import '../../App.css';
 import { platformOrderList } from '../genreEngToKor';
 
-// const platform_list = ["bomtoon", "ktoon", "mrblue", "toomics"];
-
 function SearchPlatform(props) {
   const [Checked, setChecked] = useState(props.platform) ;// default = all
   const [Platforms, setPlatforms] = useState(platformOrderList);

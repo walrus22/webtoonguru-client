@@ -73,16 +73,3 @@ const ArtistOtherWorkCard = (props) => {
 };
 
 export default ArtistOtherWorkCard;
-
-
-  // <Card className='detail-card'>
-  //   <a href={`/webtoon/details/${webtoon._id}`} style={{width:'100%', height:'100px'}}>
-  //     <Card.Img className='artist-card-img' variant="top" src={webtoon.thumbnail} />
-  //     <Card.ImgOverlay style={{width:'100%', height:'100px', padding: '0px'}}>
-  //       {webtoon.adult === true && <img className="ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
-  //     </Card.ImgOverlay>
-  //   </a>
-  //   <Card.Body className='artist-card-title-body'>
-  //       <a className = 'artist-card-link' href={`/webtoon/details/${webtoon._id}`}>{webtoon.title}</a>
-  //   </Card.Body>
-  // </Card>

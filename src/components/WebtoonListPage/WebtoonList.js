@@ -48,7 +48,6 @@ function WebtoonList() {
         filters: Filters,
         limit: Limit,
     }
-    // console.log(getSetting)
     getWebtoons(getSetting)
   }, [Page])
   
@@ -59,13 +58,10 @@ function WebtoonList() {
       if(res.data[0].sample.length !== 0){
         setWebtoons(res.data[0].sample)
         setCount(res.data[0].count[0].count)
-        // console.log(res)
       } else {
         setWebtoons([])
         setCount(0)
-        // console.log(res)
       }
-      // console.log(getSetting)
     })
     .catch(err =>{
         console.log('Error from ShowWebtoonList');
@@ -85,20 +81,14 @@ function WebtoonList() {
   const handleFilters  = async (filters, category) => {
     let newFilters = {}
     if(category) {
-      // console.log("yes");
       newFilters = {...Filters}
       newFilters[category] = filters
     } else {
-      // console.log("no");
       newFilters = filters
     }
-
-    // console.log(newFilters)
-
     showFilteredResults(newFilters)
     queryURL(newFilters)
     setFilters(newFilters)
-
   }
 
   const handlePage = (event, p) => {
@@ -106,12 +96,7 @@ function WebtoonList() {
   }
   
   const queryURL = async (filters) => {
-    // console.log(filters)
-    // let newUrl = process.env.REACT_APP_API + "webtoon/list";
-    // let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    
     let newUrl =window.location.protocol + "//" + window.location.host + window.location.pathname;
-    // console.log(newUrl);
     for await (const [filterName, filter] of Object.entries(filters)){
       if(typeof(filter) === "string" && filter !== "") {
         newUrl += `&${filterName}=${filter}`;
@@ -126,8 +111,6 @@ function WebtoonList() {
       newUrl = newUrl.substring(0, newUrl.indexOf("&")) + "?" + newUrl.substring(newUrl.indexOf("&")+1)
     }
     window.history.pushState({path:newUrl},'',newUrl);
-    // setPageUrl(newUrl)
-    // console.log(PageUrl);
   }
 
   const handleReset = () => {
@@ -147,12 +130,6 @@ function WebtoonList() {
     };
     handleFilters(resetFilter)
   }
-
-
-  // const TableCell = styled(TableCell)({
-  //   padding: '10px',
-  //   borderBottom: '0px',
-  // })
 
   return (
     <div className="main">
@@ -247,15 +224,3 @@ function WebtoonList() {
 }
 
 export default WebtoonList;
-
-// title: "",
-// artist: "",
-// date: ['all'],
-// genre: ['all'],
-// genreOperator: "",
-// platform: ['all'],
-// adult: false,
-// order: { 'title' : 1,
-// // 'platform.rank' : 0, 
-// },
-// genreOperator: "",

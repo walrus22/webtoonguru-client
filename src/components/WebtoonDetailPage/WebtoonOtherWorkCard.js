@@ -17,23 +17,7 @@ const WebtoonOtherWorkCard = (props) => {
         <Card.Body className='detail-card-title-body'>
             <a className = 'detail-card-link' href={`/webtoon/details/${webtoon._id}`}>{webtoon.title}</a>
         </Card.Body>
-      </Card>
-
-        // <Card style={{margin:'10px', width: '130px' , height:'100px', backgroundColor: 'transparent', border:0}}>
-        //   <Card.Img className='detail-card-img' src={webtoon.thumbnail} />
-        //   <Card.Body className='detail-card-body'>
-        //     <Card.Title >
-        //       <Link className = 'detail-card-link' onClick={() => {window.location.href=`/webtoon/details/${webtoon._id}`}} to={`/webtoon/details/${webtoon._id}`}>{webtoon.title}</Link>
-        //       <a className = 'detail-card-link' href={`/webtoon/details/${webtoon._id}`}>{webtoon.title}</a>
-        //       </Card.Title>
-        //     <Card.Text>
-        //       {webtoon.genre.map((item,index) => {
-        //         return <span key={index} >{item.name} <br></br></span>
-        //       })}
-        //     </Card.Text>
-        //   </Card.Body>
-        // </Card>
-        
+      </Card>        
       );
 };
 

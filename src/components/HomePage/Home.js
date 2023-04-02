@@ -65,8 +65,6 @@ function Home() {
           <img alt="platform" className='home-logo' src={require(`../../logo/${platform_name}.png`)}/>
         </StyledTableCell>
         {Platforms.filter(platform => platform.name === platform_name).sort((a, b) => genre_list.indexOf(a.genre.name) - genre_list.indexOf(b.genre.name)).map((platform, index, platform_list) => {
-          {/* console.log(platform_list);
-          console.log(platform); */}
           if(index !== 0 && platform.genre.name === platform_list[index-1].genre.name){
             return
           } else {
@@ -79,7 +77,7 @@ function Home() {
   const StyledTableCell = styled(TableCell)({
     padding: 8,
     borderBottom: 0,
-})
+  })
 
   return (
     <div className='main'>

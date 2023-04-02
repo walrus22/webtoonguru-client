@@ -6,19 +6,12 @@ import { TableCell } from '@mui/material';
 import { styled } from '@mui/system';
 import originalImageToWebImage from '../originalImageToWebImage';
 
-
-
 const GenreCard = (props) => {
     const webtoon = props.webtoon;
-    // const platform = props.platform;
-    
-    // console.log(props)
-    
     const StyledTableCell = styled(TableCell)({
         padding: 8,
         borderBottom: 0,
     })
-
 
     return (
         <StyledTableCell>
@@ -27,7 +20,6 @@ const GenreCard = (props) => {
                     <Card.Img className='home-card-img' variant="top" src={originalImageToWebImage(webtoon, 80, 80)} />
                     <Card.ImgOverlay>
                         {webtoon.adult === true && <img className="home-ico-adult" src={require('../../logo/adult.png')} alt="hi" />}
-                        {/* <Typography variant='' className='home-card-title'>{webtoon.title}</Typography> */}
                         <Card.Body className='genre-card-title'>
                             {webtoon.title}
                         </Card.Body>

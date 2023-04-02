@@ -56,8 +56,6 @@ class WeekdayList extends React.Component {
     }
   }
 
-
-
 render() {
   const platforms = this.state.platforms
   const platform_list = this.state.platform_list;

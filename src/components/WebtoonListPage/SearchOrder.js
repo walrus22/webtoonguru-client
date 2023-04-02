@@ -59,7 +59,6 @@ function SearchOrder(props) {
         value={Orders} 
         onClick={event => handleToggle(event.target.value)}>
         <Button value='title' style={handleColor(Orders['title'])}>제목&nbsp;{handleArrow(Orders['title'])}<span style={{fontSize:"1.1em"}}></span></Button>
-        {/* <Button value='platform.rank' style={handleColor(Orders['platform.rank'])}>랭킹순 {handleArrow(Orders['platform.rank'])}</Button> */}
     </ButtonGroup>
 
   </div>

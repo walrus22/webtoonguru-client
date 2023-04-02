@@ -9,12 +9,6 @@ function SearchArtist(props) {
   useEffect(() => {
     setArtist(props.artist)
     props.handleFilters(Artist)
-
-    // if(!props.artist){
-    //   setArtist("")
-    // } else {
-    //   setArtist(props.artist)
-    // }
   }, [props.artist])
 
   const handleArtist = (value) => {

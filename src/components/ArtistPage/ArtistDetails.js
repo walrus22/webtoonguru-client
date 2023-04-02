@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 
 export function withRouter(Children){
   return(props)=>{
-     const match  = {params: useParams()};
-     return <Children {...props}  match = {match}/>
- }
+    const match  = {params: useParams()};
+    return <Children {...props}  match = {match}/>
+  }
 }
 
 
@@ -22,10 +22,7 @@ class ArtistDetails extends React.Component {
     };
   }
   
-  
-  
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
     axios
       .get(process.env.REACT_APP_API + 'artist/details/' + this.props.match.params.id)
       .then(res => {
@@ -45,8 +42,6 @@ class ArtistDetails extends React.Component {
     const artist = this.state.artist;
     const work_list = this.state.work_list;
 
-    // const 
-
     return (
       <div className="main" style={{marginTop: "30px"}}>
         <div className="artist-detail-name">
@@ -62,32 +57,7 @@ class ArtistDetails extends React.Component {
             return <ArtistOtherWorkCard webtoon={webtoon._id} />
           })}
         </Grid>
-
-        {/* <Grid container xs={12}>
-          <Grid container xs={6} >
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          hello<br></br>
-          </Grid>
-          <Grid container  xs={6} >
-          hi<br></br>
-          hi<br></br>
-          hi<br></br>
-          hi<br></br>
-          hi<br></br>
-          hi<br></br>
-          hi<br></br>
-          </Grid>
-        </Grid> */}
-
-
       </div>
-
     );
     
   }

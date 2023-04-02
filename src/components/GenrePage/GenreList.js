@@ -11,21 +11,15 @@ import { platformOrderList, genreOrderList } from '../genreEngToKor';
 
 export function withRouter(Children){
   return(props)=>{
-     const match  = {params: useParams()};
-     return <Children {...props}  match = {match}/>
- }
+    const match  = {params: useParams()};
+    return <Children {...props}  match = {match}/>
+  }
 }
 
 class GenreList extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.match.params.id);
-    // console.log(this.props.match.params.id.match(/romance/i));
-
-    // if(this.props.match.params.id === "aa"){
-    //   <Navigate to="/romance" />
-    // }
-    
+    // console.log(this.props.match.params.id);
     this.state = {
       platforms: [],
       genre_name: "",
@@ -62,7 +56,6 @@ class GenreList extends React.Component {
 
       // 투믹스 중복 1위 제거하기 전까진 일단 냅둬
       // temp.splice(temp.indexOf("toomics"),1) 
-      // 
 
       this.setState({
         platform_list : temp
@@ -72,11 +65,6 @@ class GenreList extends React.Component {
 
 
 render() {
-  // const platforms = this.state.platforms
-  // const genre_name = this.state.genre_name
-  // const platform_list = this.state.platform_list;
-  // console.log(platforms)
-  
   const genre_list = genreOrderList
   const StyledTableCell = styled(TableCell)({
     padding: 8,

@@ -9,15 +9,10 @@ import originalImageToWebImage from '../originalImageToWebImage';
 
 const WeekdayCard = (props) => {
     const webtoon = props.webtoon;
-    // const platform = props.platform;
-    
-    // console.log(props)
-    
     const StyledTableCell = styled(TableCell)({
         padding: 8,
         borderBottom: 0,
     })
-
 
     return (
         <StyledTableCell>

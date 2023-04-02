@@ -3,7 +3,6 @@ import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import '../../App.css';
 
 function ToggleOperator(props) {
-  // const [Operator, setOperator] = useState("and")
   const [Checked, setChecked] = useState(props.operator)
 
   useEffect(() => {
